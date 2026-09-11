@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Rápido de Técnicas CSS</title>
+<style>
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    h1 { margin-bottom: 10px; }
+    h2 {
+        margin-top: 60px;
+        margin-bottom: 10px;
+        color: #c62828;
+        border-bottom: 2px solid #c62828;
+        padding-bottom: 6px;
+    }
+
+    p.explicacao { margin-bottom: 14px; color: #555; }
+
+    pre {
+        background-color: #222;
+        color: #eee;
+        padding: 14px;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-size: 0.85em;
+        margin-bottom: 16px;
+    }
+
+    .demo {
+        border: 2px dashed #999;
+        padding: 16px;
+        border-radius: 6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    .menu-demo a {
+        margin-right: 15px;
+        color: #c62828;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .alvo-demo {
+        margin-top: 30px;
+        background-color: #ffebee;
+        padding: 20px;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+
+    .caixa-gradiente {
+        height: 120px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #c62828, #e57373);
+    }
+
+
+    .caixa-imagem-escura {
+        height: 180px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-align: center;
+        background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('img/foto.jpg') center/cover no-repeat,
+            linear-gradient(135deg, #8e1f1f, #c62828);
+    }
+
+
+    .caixa-flex {
+        height: 120px;
+        background-color: #f1f1f1;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .grade-demo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+    }
+
+    .cartao-demo {
+        background-color: #c62828;
+        color: #fff;
+        padding: 16px;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    .caixa-sombra {
+        height: 100px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .sanfona-demo {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 4px 16px;
+    }
+
+    .sanfona-demo summary {
+        cursor: pointer;
+        padding: 12px 0;
+        font-weight: bold;
+    }
+
+    .botao-demo {
+        display: inline-block;
+        background-color: #c62828;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 12px 24px;
+        border-radius: 999px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .botao-demo:hover {
+        background-color: #e57373;
+        transform: translateY(-3px);
+    }
+
+</style>
+</head>
+<body>
+
+    <h1>Guia Rápido de Técnicas CSS</h1>
+    <p class="explicacao">Cada bloco abaixo mostra o código e o resultado de UMA técnica usada no site da campanha. Use "Inspecionar elemento" do navegador para ver o código rodando ao vivo.</p>
+
+    <h2>1. Navegação por âncora</h2>
+    <p class="explicacao">O link usa <code>href="#nome"</code> e o elemento de destino tem <code>id="nome"</code>. O navegador rola a página até ele.</p>
+    <pre><code>&lt;a href="#alvo"&gt;Ir para o alvo&lt;/a&gt;
+
+...
+
+&lt;div id="alvo"&gt;Cheguei!&lt;/div&gt;
+
+html { scroll-behavior: smooth; }</code></pre>
+    <div class="demo menu-demo">
+        <a href="#alvo-demo">Clique aqui para descer até o alvo</a>
+    </div>
+    <div id="alvo-demo" class="alvo-demo">Você chegou ao alvo! 🎯</div>
+
+
+    <h2>2. Gradiente de cor</h2>
+    <p class="explicacao"><code>linear-gradient()</code> mistura duas cores em uma direção escolhida.</p>
+    <pre><code>.caixa {
+    background: linear-gradient(135deg, #c62828, #e57373);
+}</code></pre>
+    <div class="demo">
+        <div class="caixa-gradiente"></div>
+    </div>
+
+    <h2>3. Efeito escuro sobre uma imagem</h2>
+    <p class="explicacao">Sobrepomos um gradiente escuro por cima da imagem de fundo, usando duas camadas separadas por vírgula.</p>
+    <pre><code>.caixa {
+    background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url('img/foto.jpg') center/cover no-repeat;
+}</code></pre>
+    <div class="demo">
+        <div class="caixa-imagem-escura">Texto legível sobre a foto</div>
+    </div>
+
+    <h2>4. Centralizar com Flexbox</h2>
+    <p class="explicacao"><code>display: flex</code> + <code>align-items</code> + <code>justify-content</code> centralizam o conteúdo nos dois eixos.</p>
+    <pre><code>.caixa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}</code></pre>
+    <div class="demo">
+        <div class="caixa-flex">Estou centralizado!</div>
+    </div>
+
+    <h2>5. Grade de cartões com Grid</h2>
+    <p class="explicacao"><code>grid-template-columns: repeat(auto-fit, minmax(...))</code> cria colunas que se reorganizam sozinhas.</p>
+    <pre><code>.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}</code></pre>
+    <div class="demo grade-demo">
+        <div class="cartao-demo">Cartão 1</div>
+        <div class="cartao-demo">Cartão 2</div>
+        <div class="cartao-demo">Cartão 3</div>
+    </div>
+
+    <h2>6. Cantos arredondados e sombra</h2>
+    <p class="explicacao"><code>border-radius</code> arredonda; <code>box-shadow</code> adiciona profundidade.</p>
+    <pre><code>.caixa {
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}</code></pre>
+    <div class="demo">
+        <div class="caixa-sombra"></div>
+    </div>
+
+    <h2>7. Sanfona (accordion) sem JavaScript</h2>
+    <p class="explicacao">As tags <code>&lt;details&gt;</code> e <code>&lt;summary&gt;</code> já funcionam sozinhas, sem precisar de nenhum script.</p>
+    <pre><code>&lt;details&gt;
+    &lt;summary&gt;Clique para abrir&lt;/summary&gt;
+    &lt;p&gt;Conteúdo escondido aqui.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+    <div class="demo">
+        <details class="sanfona-demo">
+            <summary>Clique para abrir</summary>
+            <p>Conteúdo escondido aqui.</p>
+        </details>
+    </div>
+
+    <h2>8. Botão com efeito ao passar o mouse</h2>
+    <p class="explicacao"><code>:hover</code> muda o estilo quando o mouse passa por cima; <code>transition</code> suaviza a mudança.</p>
+    <pre><code>.botao {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.botao:hover {
+    background-color: #e57373;
+    transform: translateY(-3px);
+}</code></pre>
+    <div class="demo">
+        <a href="#" class="botao-demo">Passe o mouse aqui</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Guide - Projeto Doação de Sangue</title>
+    <style>
+        /* Estilos do próprio guia */
+        body { font-family: Arial, Helvetica, sans-serif; background-color: #fafafa; color: #333; padding: 40px; line-height: 1.6; }
+        h1 { border-bottom: 3px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
+        h2 { margin-top: 40px; color: #555; }
+        .guide-section { margin-bottom: 40px; background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        
+        /* Cores */
+        .color-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
+        .color-swatch { width: 120px; text-align: center; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .color-box { height: 80px; }
+        .color-info { padding: 10px; font-size: 0.9em; background: #fff; border-top: 1px solid #eee; }
+        
+        /* Tipografia */
+        .typography-preview { margin-top: 15px; border-left: 4px solid #c62828; padding-left: 15px; }
+        
+        /* Componentes - Usando as classes do projeto real para demonstração */
+        .btn-demo { background-color: #c62828; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold; }
+        .btn-demo:hover { background-color: #e57373; }
+        
+        .card-demo { background-color: #ffebee; padding: 15px; border-left: 5px solid #c62828; border-radius: 4px; max-width: 400px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h1>Guia de Estilos (Style Guide)</h1>
+    <p>Este documento define os padrões visuais aplicados na interface da Campanha de Doação de Sangue.</p>
+
+    <div class="guide-section">
+        <h2>1. Paleta de Cores</h2>
+        <div class="color-grid">
+            <div class="color-swatch">
+                <div class="color-box" style="background-color: #c62828;"></div>
+                <div class="color-info"><strong>Primária</strong><br>#c62828</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background-color: #e57373;"></div>
+                <div class="color-info"><strong>Secundária</strong><br>#e57373</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background-color: #ffebee;"></div>
+                <div class="color-info"><strong>Destaque/Fundo</strong><br>#ffebee</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background-color: #f9f9f9; border: 1px solid #ccc;"></div>
+                <div class="color-info"><strong>Fundo Pág.</strong><br>#f9f9f9</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background-color: #333333;"></div>
+                <div class="color-info"><strong>Texto Base</strong><br>#333333</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="guide-section">
+        <h2>2. Tipografia</h2>
+        <p>A família de fontes escolhida foi <strong>Arial, Helvetica, sans-serif</strong>, garantindo máxima legibilidade e compatibilidade em todos os navegadores e sistemas operacionais (web safe fonts).</p>
+        
+        <div class="typography-preview">
+            <h1 style="font-size: 2.5em; margin: 0;">Heading 1 (Título Principal)</h1>
+            <h2 style="font-size: 2em; margin: 10px 0; color: #c62828;">Heading 2 (Títulos de Seção)</h2>
+            <h3 style="font-size: 1.5em; margin: 10px 0;">Heading 3 (Subtítulos)</h3>
+            <p style="font-size: 1em; color: #333;"><strong>Parágrafo Padrão:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. O sangue é insubstituível e não pode ser produzido artificialmente.</p>
+        </div>
+    </div>
+
+    <div class="guide-section">
+        <h2>3. Componentes da Interface (UI Elements)</h2>
+        
+        <h3>Links e Botões</h3>
+        <p>Os elementos interativos usam a cor primária e mudam para a cor secundária ao passar o mouse (hover).</p>
+        <div style="margin-top: 15px;">
+            <a href="#" class="btn-demo">Exemplo de Botão / Link</a>
+        </div>
+
+        <h3 style="margin-top: 30px;">Cards de Informação</h3>
+        <p>Utilizados para destacar informações importantes como endereços de Hemocentros.</p>
+        <div class="card-demo">
+            <h4 style="margin: 0 0 10px 0; color: #333;">Título do Card</h4>
+            <p style="margin: 0; font-size: 0.9em;">Este é um exemplo de card. A borda esquerda vermelha serve para chamar a atenção do usuário para informações cruciais.</p>
+        </div>
+    </div>
+
+</body>
+</html>

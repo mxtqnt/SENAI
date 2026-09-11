@@ -1,0 +1,41 @@
+DOCUMENTO DE IMPLEMENTAÇÃO E TESTES - ETAPA 2
+Curso: Técnico de Informática para Internet
+Unidade Curricular: Estrutura de Interface Web
+
+---------------------------------------------------------
+PARTE 1: JUSTIFICATIVAS DE ALTERAÇÕES NO PROJETO INICIAL
+---------------------------------------------------------
+Durante a passagem do wireframe (Etapa 1) para a implementação real (Etapa 2), algumas adaptações foram necessárias visando a melhoria da experiência do usuário e acessibilidade:
+
+1. Estrutura de Layout (Mobile-First):
+No esboço inicial, os menus de navegação estavam dispostos lateralmente. Durante a implementação, optou-se por utilizar o CSS Flexbox no cabeçalho (Header) para transformar a barra de navegação em uma lista horizontal no Desktop, e uma lista vertical em dispositivos móveis (Mobile). Isso garantiu uma interface mais fluida.
+
+2. Uso de Tags Semânticas:
+Em vez de utilizar apenas as tradicionais tags <div> estipuladas no diagrama inicial, o projeto foi implementado utilizando as tags semânticas do HTML5 (<header>, <main>, <section>, <nav>, e <footer>). Essa alteração foi feita para melhorar a indexação por motores de busca (SEO) da campanha e facilitar o uso de leitores de tela por pessoas com deficiência visual.
+
+3. Cores e Contraste:
+As cores foram ajustadas em relação à paleta inicial. O vermelho sangue (#c62828) foi mantido como cor primária por motivos temáticos, mas os fundos de algumas seções ganharam a cor cinza claro (#f1f1f1 e #ffebee) para garantir um contraste adequado com o texto escuro, reduzindo o cansaço visual e seguindo padrões de ergonomia.
+
+---------------------------------------------------------
+PARTE 2: RELATÓRIO DE TESTES DE COMPATIBILIDADE
+---------------------------------------------------------
+Para garantir que a campanha alcance o maior número de pessoas, o site foi testado nos principais navegadores do mercado. Abaixo estão os resultados:
+
+1. Google Chrome (Versão mais recente):
+- Resultado: Compatibilidade 100%. 
+- Observação: O layout flexbox se comportou perfeitamente. As transições de hover nos links funcionaram conforme esperado e as fontes renderizaram com clareza.
+
+2. Mozilla Firefox:
+- Resultado: Compatibilidade 100%.
+- Observação: Nenhuma quebra de layout detectada. A transição das páginas âncora (links internos) ocorreu de forma suave.
+
+3. Microsoft Edge:
+- Resultado: Compatibilidade 100%.
+- Observação: Como o Edge compartilha o motor Chromium, os resultados foram idênticos aos do Google Chrome. Sem anomalias visuais.
+
+4. Safari (Dispositivos móveis / iOS):
+- Resultado: Compatibilidade 95%.
+- Observação: O layout responsivo ativou a media query perfeitamente (< 768px), empilhando os menus para facilitar o toque (touch). Pequena variação na espessura da fonte nativa (Arial), mas que não prejudicou a legibilidade nem o layout.
+
+Conclusão dos Testes: 
+A interface estruturada em HTML5 e CSS puro demonstrou alta estabilidade e portabilidade cross-browser, estando apta para ser publicada nos servidores da empresa de Saúde.

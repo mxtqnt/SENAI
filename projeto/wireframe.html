@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe - Campanha Doação de Sangue</title>
+    <style>
+        /* Estilos específicos para simular um Wireframe (baixa fidelidade) */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Courier New", Courier, monospace; }
+        body { background-color: #ffffff; color: #333; padding: 20px; }
+        .wireframe-container { max-width: 1000px; margin: 0 auto; border: 2px dashed #999; padding: 10px; }
+        
+        .box { border: 2px solid #555; background-color: #f4f4f4; margin-bottom: 15px; padding: 20px; text-align: center; }
+        .box-header { display: flex; justify-content: space-between; align-items: center; }
+        .box-nav { display: flex; gap: 15px; list-style: none; }
+        .box-nav li { border: 1px solid #777; padding: 5px 10px; background: #e0e0e0; }
+        
+        .image-placeholder { border: 2px dashed #777; background: #ddd; height: 150px; display: flex; align-items: center; justify-content: center; color: #555; margin-bottom: 15px; font-weight: bold; }
+        
+        .text-placeholder { background: #ccc; height: 15px; margin: 5px 0; border-radius: 3px; }
+        .text-placeholder.short { width: 50%; }
+        .text-placeholder.medium { width: 75%; }
+        .text-placeholder.long { width: 100%; }
+    </style>
+</head>
+<body>
+
+    <div class="wireframe-container">
+        <header class="box box-header">
+            <h2>[ LOGO / TÍTULO ]</h2>
+            <ul class="box-nav">
+                <li>[ Link 1 ]</li>
+                <li>[ Link 2 ]</li>
+                <li>[ Link 3 ]</li>
+                <li>[ Link 4 ]</li>
+            </ul>
+        </header>
+
+        <section class="box">
+            <div class="image-placeholder">
+                [ IMAGEM DE DESTAQUE - HERO BANNER ]
+            </div>
+            <h2>[ Título da Chamada Principal ]</h2>
+            <div class="text-placeholder medium" style="margin: 10px auto;"></div>
+        </section>
+
+        <section class="box" style="text-align: left;">
+            <h3>[ Título da Seção: A Importância de Doar ]</h3>
+            <div class="text-placeholder long"></div>
+            <div class="text-placeholder long"></div>
+            <div class="text-placeholder short"></div>
+        </section>
+
+        <section class="box" style="text-align: left;">
+            <h3>[ Título da Seção: Onde Doar ]</h3>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <div style="flex: 1; border: 1px solid #999; padding: 10px; background: #eaeaea;">
+                    <h4>[ Card de Informação ]</h4>
+                    <div class="text-placeholder medium"></div>
+                    <div class="text-placeholder short"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="box">
+            <p>[ Rodapé: Informações de Direitos Autorais ]</p>
+        </footer>
+    </div>
+
+</body>
+</html>

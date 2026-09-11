@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Rápido de Responsividade</title>
+<style>
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    h1 { margin-bottom: 6px; }
+    p.intro { color: #555; margin-bottom: 10px; }
+
+    h2 {
+        margin-top: 60px;
+        margin-bottom: 10px;
+        color: #c62828;
+        border-bottom: 2px solid #c62828;
+        padding-bottom: 6px;
+    }
+
+    p.explicacao { margin-bottom: 14px; color: #555; }
+
+    pre {
+        background-color: #222;
+        color: #eee;
+        padding: 14px;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-size: 0.85em;
+        margin-bottom: 16px;
+    }
+
+    .demo {
+        border: 2px dashed #999;
+        padding: 16px;
+        border-radius: 6px;
+    }
+
+    .dica {
+        background-color: #ffebee;
+        border-left: 4px solid #c62828;
+        padding: 10px 14px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        margin-bottom: 16px;
+    }
+
+
+    /* ============================================
+       TÉCNICA 2: Container fluido
+       ============================================ */
+    .container-demo {
+        max-width: 500px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 16px;
+        background-color: #f1f1f1;
+        border-radius: 6px;
+    }
+    .container-demo p { padding: 16px 0; text-align: center; }
+
+
+    /* ============================================
+       TÉCNICA 3: Imagem fluida
+       ============================================ */
+    .imagem-fluida-demo {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        display: block;
+        border-radius: 6px;
+    }
+    .foto-exemplo {
+        background: linear-gradient(135deg, #c62828, #e57373);
+        height: 120px;
+        border-radius: 6px;
+    }
+
+
+    /* ============================================
+       TÉCNICA 4: Flexbox com quebra de linha
+       ============================================ */
+    .flex-wrap-demo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .flex-wrap-demo div {
+        background-color: #c62828;
+        color: #fff;
+        padding: 20px;
+        border-radius: 6px;
+        flex: 1 1 160px;
+        text-align: center;
+    }
+
+
+    /* ============================================
+       TÉCNICA 5: Grid automático (auto-fit + minmax)
+       ============================================ */
+    .grid-auto-demo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+    }
+    .grid-auto-demo div {
+        background-color: #e57373;
+        color: #fff;
+        padding: 20px;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+
+    /* ============================================
+       Moldura do "celular" redimensionável
+       (usada nos exemplos de media query)
+       ============================================ */
+    .tela-redimensionavel {
+        resize: horizontal;
+        overflow: auto;
+        border: 3px dashed #999;
+        width: 600px;
+        max-width: 100%;
+        min-width: 200px;
+        padding: 0;
+    }
+    .tela-redimensionavel iframe {
+        width: 100%;
+        height: 220px;
+        border: none;
+        display: block;
+    }
+    .aviso-arraste {
+        font-size: 0.85em;
+        color: #777;
+        margin-top: 6px;
+        margin-bottom: 30px;
+    }
+
+</style>
+</head>
+<body>
+
+    <h1>Guia Rápido de Responsividade</h1>
+    <p class="intro">Responsividade é fazer o site se adaptar a qualquer tamanho de tela — celular, tablet ou computador. Cada bloco abaixo mostra UMA técnica usada no projeto.</p>
+    <p class="intro"><strong>Nos exemplos com moldura tracejada, arraste o cantinho inferior direito para redimensionar</strong> e veja o layout mudar sozinho.</p>
+
+    <h2>1. A tag viewport (obrigatória)</h2>
+    <p class="explicacao">Sem essa linha no <code>&lt;head&gt;</code>, o celular finge ser uma tela larga e mostra o site minúsculo. Ela diz ao navegador: "use a largura real do aparelho e não dê zoom automático".</p>
+    <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+    <div class="dica">Essa tag não tem efeito visual para mostrar aqui — mas é a primeira coisa que todo site responsivo precisa ter.</div>
+
+    <h2>2. Container fluido</h2>
+    <p class="explicacao"><code>max-width</code> impede que o conteúdo fique largo demais em telas grandes, e <code>width: 100%</code> permite encolher em telas pequenas.</p>
+    <pre><code>.container {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+}</code></pre>
+    <div class="demo">
+        <div class="container-demo"><p>Encolha a janela do navegador — eu nunca ultrapasso 500px, mas encolho sem problemas.</p></div>
+    </div>
+
+    <h2>3. Imagem fluida</h2>
+    <p class="explicacao">Sem isso, uma imagem grande pode "estourar" a tela em celulares. Com <code>max-width: 100%</code>, ela nunca ultrapassa o tamanho do elemento pai.</p>
+    <pre><code>img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+    <div class="demo">
+        <div class="foto-exemplo imagem-fluida-demo"></div>
+    </div>
+
+    <h2>4. Flexbox com quebra de linha</h2>
+    <p class="explicacao"><code>flex-wrap: wrap</code> permite que os itens passem para a linha de baixo quando não cabem mais lado a lado. Redimensione a janela do navegador para ver.</p>
+    <pre><code>.linha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.linha > div {
+    flex: 1 1 160px; /* cresce, encolhe, e prefere 160px */
+}</code></pre>
+    <div class="demo flex-wrap-demo">
+        <div>Item 1</div>
+        <div>Item 2</div>
+        <div>Item 3</div>
+        <div>Item 4</div>
+    </div>
+
+    <h2>5. Grade automática (Grid + auto-fit)</h2>
+    <p class="explicacao">O número de colunas se ajusta sozinho, sem precisar de media query. <code>minmax(140px, 1fr)</code> diz: "cada coluna tem no mínimo 140px, e some quantas couberem".</p>
+    <pre><code>.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+}</code></pre>
+    <div class="demo grid-auto-demo">
+        <div>Cartão 1</div>
+        <div>Cartão 2</div>
+        <div>Cartão 3</div>
+        <div>Cartão 4</div>
+    </div>
+
+    <h2>6. Media Query: menu que empilha no celular</h2>
+    <p class="explicacao">A media query aplica um CSS diferente só quando a tela é estreita. Aqui, o menu vira coluna e centraliza abaixo de <code>768px</code> de largura.</p>
+    <pre><code>@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    header nav ul {
+        flex-direction: column;
+    }
+}</code></pre>
+    <div class="tela-redimensionavel">
+        <iframe srcdoc="
+            &lt;style&gt;
+                * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+                header { background-color:#c62828; color:#fff; padding:14px; }
+                .container { display:flex; justify-content:space-between; align-items:center; }
+                nav ul { list-style:none; display:flex; gap:14px; }
+                nav ul li { font-size:0.85em; }
+                @media (max-width: 400px) {
+                    .container { flex-direction:column; text-align:center; gap:10px; }
+                    nav ul { flex-direction:column; gap:8px; }
+                }
+            &lt;/style&gt;
+            &lt;header&gt;
+                &lt;div class=&quot;container&quot;&gt;
+                    &lt;strong&gt;SalvaVidas&lt;/strong&gt;
+                    &lt;nav&gt;&lt;ul&gt;&lt;li&gt;Início&lt;/li&gt;&lt;li&gt;Doar&lt;/li&gt;&lt;li&gt;FAQ&lt;/li&gt;&lt;/ul&gt;&lt;/nav&gt;
+                &lt;/div&gt;
+            &lt;/header&gt;
+        "></iframe>
+    </div>
+    <p class="aviso-arraste">↳ Arraste o canto inferior direito da moldura para menos de ~400px de largura e veja o menu virar coluna.</p>
+
+    <h2>7. Media Query: colunas que empilham</h2>
+    <p class="explicacao">A mesma ideia da técnica 6, aplicada a uma seção de duas colunas: em telas largas ficam lado a lado, em telas estreitas uma fica embaixo da outra.</p>
+    <pre><code>.split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.split > * {
+    flex: 1 1 200px; /* já empilha sozinho quando não cabe mais */
+}</code></pre>
+    <div class="tela-redimensionavel">
+        <iframe srcdoc="
+            &lt;style&gt;
+                * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+                body { padding:14px; }
+                .split { display:flex; flex-wrap:wrap; gap:14px; }
+                .split div { flex:1 1 200px; padding:16px; border-radius:6px; color:#fff; text-align:center; font-size:0.85em; }
+                .col-a { background-color:#c62828; }
+                .col-b { background-color:#e57373; }
+            &lt;/style&gt;
+            &lt;div class=&quot;split&quot;&gt;
+                &lt;div class=&quot;col-a&quot;&gt;Texto&lt;/div&gt;
+                &lt;div class=&quot;col-b&quot;&gt;Imagem&lt;/div&gt;
+            &lt;/div&gt;
+        "></iframe>
+    </div>
+    <p class="aviso-arraste">↳ Arraste a moldura para menos de ~350px de largura e veja as colunas empilharem — aqui isso acontece sozinho com <code>flex-wrap</code>, sem nem precisar de media query.</p>
+
+</body>
+</html>
