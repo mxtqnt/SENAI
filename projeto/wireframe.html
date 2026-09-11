@@ -9,23 +9,40 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Courier New", Courier, monospace; }
         body { background-color: #ffffff; color: #333; padding: 20px; }
         .wireframe-container { max-width: 1000px; margin: 0 auto; border: 2px dashed #999; padding: 10px; }
-        
+
         .box { border: 2px solid #555; background-color: #f4f4f4; margin-bottom: 15px; padding: 20px; text-align: center; }
         .box-header { display: flex; justify-content: space-between; align-items: center; }
         .box-nav { display: flex; gap: 15px; list-style: none; }
         .box-nav li { border: 1px solid #777; padding: 5px 10px; background: #e0e0e0; }
-        
+
         .image-placeholder { border: 2px dashed #777; background: #ddd; height: 150px; display: flex; align-items: center; justify-content: center; color: #555; margin-bottom: 15px; font-weight: bold; }
-        
+
         .text-placeholder { background: #ccc; height: 15px; margin: 5px 0; border-radius: 3px; }
         .text-placeholder.short { width: 50%; }
         .text-placeholder.medium { width: 75%; }
         .text-placeholder.long { width: 100%; }
+
+        .split-box { display: flex; gap: 15px; text-align: left; flex-wrap: wrap; }
+        .split-box > div { flex: 1 1 250px; }
+
+        .cards-row { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .cards-row > div { flex: 1 1 150px; border: 1px solid #999; padding: 10px; background: #e0e0e0; }
+
+        .steps-row { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; text-align: center; }
+        .steps-row > div { flex: 1 1 130px; }
+        .step-circle { width: 34px; height: 34px; border-radius: 50%; border: 2px solid #777; margin: 0 auto 8px auto; line-height: 30px; }
+
+        .faq-box { border: 1px solid #999; background: #eaeaea; padding: 10px; margin-bottom: 8px; text-align: left; }
+
+        .footer-cols { display: flex; gap: 20px; flex-wrap: wrap; text-align: left; }
+        .footer-cols > div { flex: 1 1 150px; }
     </style>
 </head>
 <body>
 
     <div class="wireframe-container">
+
+        <!-- HEADER -->
         <header class="box box-header">
             <h2>[ LOGO / TÍTULO ]</h2>
             <ul class="box-nav">
@@ -36,35 +53,90 @@
             </ul>
         </header>
 
+        <!-- HERO -->
         <section class="box">
             <div class="image-placeholder">
-                [ IMAGEM DE DESTAQUE - HERO BANNER ]
+                [ IMAGEM DE FUNDO COM OVERLAY ESCURO ]
             </div>
             <h2>[ Título da Chamada Principal ]</h2>
             <div class="text-placeholder medium" style="margin: 10px auto;"></div>
+            <div class="text-placeholder short" style="margin: 10px auto; height: 25px; background: #999;"></div>
+            <p style="font-size: 0.8em; margin-top: 4px;">[ Botão de Ação ]</p>
         </section>
 
+        <!-- IMPORTÂNCIA (TEXTO + IMAGEM) -->
         <section class="box" style="text-align: left;">
-            <h3>[ Título da Seção: A Importância de Doar ]</h3>
-            <div class="text-placeholder long"></div>
-            <div class="text-placeholder long"></div>
-            <div class="text-placeholder short"></div>
+            <h3 style="text-align: center;">[ Seção: A Importância de Doar ]</h3>
+            <div class="split-box" style="margin-top: 10px;">
+                <div>
+                    <div class="text-placeholder long"></div>
+                    <div class="text-placeholder long"></div>
+                    <div class="text-placeholder short"></div>
+                    <p style="margin-top: 10px; font-size: 0.85em;">[ Lista de estatísticas ]</p>
+                </div>
+                <div class="image-placeholder" style="height: 130px; margin-bottom: 0;">
+                    [ IMAGEM ]
+                </div>
+            </div>
         </section>
 
+        <!-- QUEM PODE DOAR (CARDS) + ETAPAS -->
         <section class="box" style="text-align: left;">
-            <h3>[ Título da Seção: Onde Doar ]</h3>
+            <h3 style="text-align: center;">[ Seção: Quem pode doar? ]</h3>
+            <div class="cards-row">
+                <div>[ Card Requisito 1 ]</div>
+                <div>[ Card Requisito 2 ]</div>
+                <div>[ Card Requisito 3 ]</div>
+                <div>[ Card Requisito 4 ]</div>
+                <div>[ Card Requisito 5 ]</div>
+            </div>
+            <div class="steps-row">
+                <div><div class="step-circle">1</div>[ Etapa ]</div>
+                <div><div class="step-circle">2</div>[ Etapa ]</div>
+                <div><div class="step-circle">3</div>[ Etapa ]</div>
+                <div><div class="step-circle">4</div>[ Etapa ]</div>
+            </div>
+        </section>
+
+        <!-- ONDE DOAR -->
+        <section class="box" style="text-align: left;">
+            <h3 style="text-align: center;">[ Seção: Onde Doar ]</h3>
             <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <div style="flex: 1; border: 1px solid #999; padding: 10px; background: #eaeaea;">
-                    <h4>[ Card de Informação ]</h4>
+                <div style="flex: 1; border: 1px solid #999; padding: 10px; background: #eaeaea; max-width: 400px; margin: 0 auto;">
+                    <h4>[ Card de Informação: Endereço / Horário / Telefone ]</h4>
                     <div class="text-placeholder medium"></div>
                     <div class="text-placeholder short"></div>
                 </div>
             </div>
         </section>
 
+        <!-- FAQ -->
+        <section class="box" style="text-align: left;">
+            <h3 style="text-align: center;">[ Seção: Dúvidas Frequentes ]</h3>
+            <div style="margin-top: 10px;">
+                <div class="faq-box">[ + Pergunta 1 ]</div>
+                <div class="faq-box">[ + Pergunta 2 ]</div>
+                <div class="faq-box">[ + Pergunta 3 ]</div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="box" style="background-color: #ddd;">
+            <h3>[ Chamada Final ]</h3>
+            <div class="text-placeholder short" style="margin: 10px auto;"></div>
+            <p style="font-size: 0.8em;">[ Botão de Ação ]</p>
+        </section>
+
+        <!-- FOOTER -->
         <footer class="box">
-            <p>[ Rodapé: Informações de Direitos Autorais ]</p>
+            <div class="footer-cols">
+                <div>[ Sobre / Descrição ]</div>
+                <div>[ Links de Navegação ]</div>
+                <div>[ Contato ]</div>
+            </div>
+            <p style="margin-top: 10px;">[ Rodapé: Direitos Autorais ]</p>
         </footer>
+
     </div>
 
 </body>

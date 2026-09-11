@@ -4,33 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Style Guide - Projeto Doação de Sangue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
         /* Estilos do próprio guia */
         body { font-family: Arial, Helvetica, sans-serif; background-color: #fafafa; color: #333; padding: 40px; line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: 'Poppins', Arial, Helvetica, sans-serif; }
         h1 { border-bottom: 3px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
         h2 { margin-top: 40px; color: #555; }
         .guide-section { margin-bottom: 40px; background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
-        
+
         /* Cores */
         .color-grid { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
-        .color-swatch { width: 120px; text-align: center; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .color-swatch { width: 130px; text-align: center; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .color-box { height: 80px; }
-        .color-info { padding: 10px; font-size: 0.9em; background: #fff; border-top: 1px solid #eee; }
-        
+        .color-info { padding: 10px; font-size: 0.85em; background: #fff; border-top: 1px solid #eee; }
+
         /* Tipografia */
         .typography-preview { margin-top: 15px; border-left: 4px solid #c62828; padding-left: 15px; }
-        
-        /* Componentes - Usando as classes do projeto real para demonstração */
-        .btn-demo { background-color: #c62828; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold; }
+        .font-note { font-size: 0.9em; color: #777; margin-top: 6px; }
+
+        /* Botões */
+        .btn-demo { background-color: #c62828; color: white; padding: 12px 26px; text-decoration: none; border-radius: 999px; display: inline-block; font-weight: bold; margin-right: 10px; transition: background-color 0.2s ease; }
         .btn-demo:hover { background-color: #e57373; }
-        
-        .card-demo { background-color: #ffebee; padding: 15px; border-left: 5px solid #c62828; border-radius: 4px; max-width: 400px; margin-top: 15px; }
+        .btn-outline-demo { background-color: transparent; color: #c62828; border: 2px solid #c62828; padding: 10px 24px; border-radius: 999px; text-decoration: none; font-weight: bold; display: inline-block; }
+        .btn-outline-demo:hover { background-color: #ffebee; }
+
+        /* Cards de requisito (vermelhos) */
+        .req-card-demo { background-color: #c62828; color: #fff; padding: 20px; border-radius: 10px; max-width: 320px; margin-top: 15px; display: flex; gap: 14px; align-items: center; }
+        .req-card-demo .icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+        .req-card-demo h4 { margin: 0 0 4px 0; font-size: 1em; }
+        .req-card-demo p { margin: 0; font-size: 0.85em; opacity: 0.9; }
+
+        /* Card de informação (endereço) */
+        .card-demo { background-color: #ffebee; padding: 15px; border-left: 5px solid #c62828; border-radius: 8px; max-width: 400px; margin-top: 15px; }
+
+        /* Accordion / FAQ */
+        .faq-demo { max-width: 420px; margin-top: 15px; border: 1px solid #eee; border-radius: 8px; padding: 4px 18px; background: #fff; }
+        .faq-demo summary { cursor: pointer; padding: 12px 0; font-weight: bold; }
+        .faq-demo p { padding-bottom: 14px; color: #666; font-size: 0.9em; }
+
+        /* Gradiente / hero escuro */
+        .gradient-demo { height: 90px; border-radius: 8px; margin-top: 15px; max-width: 320px; }
+        .hero-demo { height: 100px; border-radius: 8px; margin-top: 15px; max-width: 320px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; text-align: center; padding: 10px; background: linear-gradient(180deg, rgba(40,8,8,0.55), rgba(20,4,4,0.72)), linear-gradient(135deg, #8e1f1f, #c62828); }
     </style>
 </head>
 <body>
 
     <h1>Guia de Estilos (Style Guide)</h1>
-    <p>Este documento define os padrões visuais aplicados na interface da Campanha de Doação de Sangue.</p>
+    <p>Este documento define os padrões visuais aplicados na interface final da Campanha de Doação de Sangue.</p>
 
     <div class="guide-section">
         <h2>1. Paleta de Cores</h2>
@@ -48,43 +70,81 @@
                 <div class="color-info"><strong>Destaque/Fundo</strong><br>#ffebee</div>
             </div>
             <div class="color-swatch">
-                <div class="color-box" style="background-color: #f9f9f9; border: 1px solid #ccc;"></div>
-                <div class="color-info"><strong>Fundo Pág.</strong><br>#f9f9f9</div>
+                <div class="color-box" style="background-color: #ffffff; border: 1px solid #ccc;"></div>
+                <div class="color-info"><strong>Fundo Pág.</strong><br>#ffffff</div>
             </div>
             <div class="color-swatch">
-                <div class="color-box" style="background-color: #333333;"></div>
-                <div class="color-info"><strong>Texto Base</strong><br>#333333</div>
+                <div class="color-box" style="background-color: #f7f7f8; border: 1px solid #ccc;"></div>
+                <div class="color-info"><strong>Fundo Alt.</strong><br>#f7f7f8</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background-color: #2b2b2b;"></div>
+                <div class="color-info"><strong>Texto Base</strong><br>#2b2b2b</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background-color: #666666;"></div>
+                <div class="color-info"><strong>Texto Claro</strong><br>#666666</div>
             </div>
         </div>
     </div>
 
     <div class="guide-section">
         <h2>2. Tipografia</h2>
-        <p>A família de fontes escolhida foi <strong>Arial, Helvetica, sans-serif</strong>, garantindo máxima legibilidade e compatibilidade em todos os navegadores e sistemas operacionais (web safe fonts).</p>
-        
+        <p><strong>Poppins</strong> (Google Fonts) é usada nos títulos, trazendo um traço mais moderno e arredondado. <strong>Arial, Helvetica, sans-serif</strong> continua sendo usada no corpo do texto, garantindo leitura confortável e compatibilidade total (web safe font).</p>
+
         <div class="typography-preview">
             <h1 style="font-size: 2.5em; margin: 0;">Heading 1 (Título Principal)</h1>
             <h2 style="font-size: 2em; margin: 10px 0; color: #c62828;">Heading 2 (Títulos de Seção)</h2>
             <h3 style="font-size: 1.5em; margin: 10px 0;">Heading 3 (Subtítulos)</h3>
-            <p style="font-size: 1em; color: #333;"><strong>Parágrafo Padrão:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. O sangue é insubstituível e não pode ser produzido artificialmente.</p>
+            <p style="font-size: 1em; color: #333; font-family: Arial, Helvetica, sans-serif;"><strong>Parágrafo Padrão:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. O sangue é insubstituível e não pode ser produzido artificialmente.</p>
+            <p class="font-note">Títulos: Poppins (600/700) · Corpo de texto: Arial/Helvetica</p>
         </div>
     </div>
 
     <div class="guide-section">
-        <h2>3. Componentes da Interface (UI Elements)</h2>
-        
-        <h3>Links e Botões</h3>
-        <p>Os elementos interativos usam a cor primária e mudam para a cor secundária ao passar o mouse (hover).</p>
+        <h2>3. Botões</h2>
+        <p>O botão principal é sólido, em formato de pílula (<code>border-radius: 999px</code>), com fundo trocando para a cor secundária no hover. O botão contorno é usado sobre fundos escuros, como no banner de destaque.</p>
         <div style="margin-top: 15px;">
-            <a href="#" class="btn-demo">Exemplo de Botão / Link</a>
+            <a href="#" class="btn-demo">Botão Principal</a>
+            <a href="#" class="btn-outline-demo">Botão Contorno</a>
         </div>
+    </div>
 
-        <h3 style="margin-top: 30px;">Cards de Informação</h3>
-        <p>Utilizados para destacar informações importantes como endereços de Hemocentros.</p>
+    <div class="guide-section">
+        <h2>4. Cartões de Requisito</h2>
+        <p>Usados na seção "Quem pode doar?": fundo vermelho sólido, ícone circular à esquerda e texto curto explicativo.</p>
+        <div class="req-card-demo">
+            <div class="icon"></div>
+            <div>
+                <h4>Título do Requisito</h4>
+                <p>Descrição curta explicando a regra.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="guide-section">
+        <h2>5. Cards de Informação</h2>
+        <p>Utilizados para destacar informações importantes, como o endereço do Hemocentro. Fundo claro com borda esquerda vermelha.</p>
         <div class="card-demo">
             <h4 style="margin: 0 0 10px 0; color: #333;">Título do Card</h4>
-            <p style="margin: 0; font-size: 0.9em;">Este é um exemplo de card. A borda esquerda vermelha serve para chamar a atenção do usuário para informações cruciais.</p>
+            <p style="margin: 0; font-size: 0.9em;">A borda esquerda vermelha chama atenção para a informação.</p>
         </div>
+    </div>
+
+    <div class="guide-section">
+        <h2>6. Perguntas Frequentes (Accordion)</h2>
+        <p>Cada pergunta usa <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> — abre e fecha sem nenhum JavaScript.</p>
+        <details class="faq-demo">
+            <summary>Clique para expandir uma pergunta</summary>
+            <p>A resposta aparece aqui embaixo quando o item é aberto.</p>
+        </details>
+    </div>
+
+    <div class="guide-section">
+        <h2>7. Gradientes e Overlay Escuro</h2>
+        <p>O banner de destaque (hero) usa duas camadas de fundo: um gradiente escuro por cima e um gradiente de cor por baixo (substitui a foto quando ela não está disponível).</p>
+        <div class="gradient-demo" style="background: linear-gradient(135deg, #c62828, #e57373);"></div>
+        <div class="hero-demo">Texto legível sobre fundo escurecido</div>
     </div>
 
 </body>
