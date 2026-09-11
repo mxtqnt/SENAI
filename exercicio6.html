@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 6 — Grade de Cartões Responsiva - Exercícios</title>
+    <link rel="stylesheet" href="exercicios.css">
+</head>
+<body>
+    <div class="container">
+        <a href="exercicios.html" class="btn-preto voltar">&larr; Voltar</a>
+
+        <h1>Exercício 6 — Grade de Cartões Responsiva</h1>
+        <p class="descricao">Construa uma grade de cartões usando CSS Grid com <code>repeat(auto-fit, minmax(...))</code>, de forma que o número de colunas se ajuste sozinho conforme a largura da tela.</p>
+
+        <div class="painel-duplo">
+            <div class="painel">
+                <h3>Wireframe</h3>
+
+                <div class="wf wf-row">
+                    <div class="wf-box">[ Card 1 ]</div>
+                    <div class="wf-box">[ Card 2 ]</div>
+                    <div class="wf-box">[ Card 3 ]</div>
+                    <div class="wf-box">[ Card 4 ]</div>
+                </div>
+
+            </div>
+            <div class="painel">
+                <h3>Tela Objetivo</h3>
+                <details class="reveal">
+                    <summary class="btn-preto">Mostrar tela objetivo</summary>
+                    <div class="preview">
+
+                    <div class="prev-grid">
+                        <div class="prev-card">Idade</div>
+                        <div class="prev-card">Peso</div>
+                        <div class="prev-card">Saúde</div>
+                        <div class="prev-card">Documento</div>
+                    </div>
+
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <div class="painel-duplo">
+            <div class="painel">
+                <h3>Esqueleto HTML</h3>
+                <pre><code>&lt;div class=&quot;cards-grid&quot;&gt;
+    &lt;div class=&quot;req-card&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;req-card&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;req-card&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;req-card&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            <div class="painel">
+                <h3>Esqueleto CSS</h3>
+                <pre><code>.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.req-card {
+    background-color: #c62828;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}</code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

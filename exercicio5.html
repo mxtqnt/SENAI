@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5 — Lista com Ícones Alinhados - Exercícios</title>
+    <link rel="stylesheet" href="exercicios.css">
+</head>
+<body>
+    <div class="container">
+        <a href="exercicios.html" class="btn-preto voltar">&larr; Voltar</a>
+
+        <h1>Exercício 5 — Lista com Ícones Alinhados</h1>
+        <p class="descricao">Monte uma lista onde cada item tem um pequeno ícone (ou bolinha colorida) alinhado ao lado do texto, usando Flexbox dentro do <code>&lt;li&gt;</code>.</p>
+
+        <div class="painel-duplo">
+            <div class="painel">
+                <h3>Wireframe</h3>
+
+                <div class="wf">
+                    <div class="wf-row" style="text-align:left; margin-bottom:6px;"><div style="flex:0 0 20px; background:#999; height:16px;"></div><div class="wf-text medium" style="margin:0;"></div></div>
+                    <div class="wf-row" style="text-align:left; margin-bottom:6px;"><div style="flex:0 0 20px; background:#999; height:16px;"></div><div class="wf-text long" style="margin:0;"></div></div>
+                    <div class="wf-row" style="text-align:left;"><div style="flex:0 0 20px; background:#999; height:16px;"></div><div class="wf-text short" style="margin:0;"></div></div>
+                </div>
+
+            </div>
+            <div class="painel">
+                <h3>Tela Objetivo</h3>
+                <details class="reveal">
+                    <summary class="btn-preto">Mostrar tela objetivo</summary>
+                    <div class="preview">
+
+                    <ul class="prev-list">
+                        <li><span class="dot"></span> 1 doação pode beneficiar até 4 pessoas</li>
+                        <li><span class="dot"></span> Cerca de 450 ml são coletados por doação</li>
+                        <li><span class="dot"></span> O processo dura de 10 a 15 minutos</li>
+                    </ul>
+
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <div class="painel-duplo">
+            <div class="painel">
+                <h3>Esqueleto HTML</h3>
+                <pre><code>&lt;ul class=&quot;stat-list&quot;&gt;
+    &lt;li&gt;&lt;svg&gt;&lt;/svg&gt; Texto do item 1&lt;/li&gt;
+    &lt;li&gt;&lt;svg&gt;&lt;/svg&gt; Texto do item 2&lt;/li&gt;
+    &lt;li&gt;&lt;svg&gt;&lt;/svg&gt; Texto do item 3&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+            <div class="painel">
+                <h3>Esqueleto CSS</h3>
+                <pre><code>.stat-list {
+    list-style: none;
+}
+
+.stat-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}</code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

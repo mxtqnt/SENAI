@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 — Estrutura Semântica - Exercícios</title>
+    <link rel="stylesheet" href="exercicios.css">
+</head>
+<body>
+    <div class="container">
+        <a href="exercicios.html" class="btn-preto voltar">&larr; Voltar</a>
+
+        <h1>Exercício 1 — Estrutura Semântica</h1>
+        <p class="descricao">Monte o esqueleto de uma página usando as tags semânticas <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code> e <code>&lt;footer&gt;</code>. Não é preciso estilizar nada ainda — o objetivo é organizar o HTML nos blocos corretos.</p>
+
+        <div class="painel-duplo">
+            <div class="painel">
+                <h3>Wireframe</h3>
+
+                <div class="wf">
+                    <div class="wf-box">[ HEADER ]</div>
+                    <div class="wf-box" style="min-height:60px;">[ MAIN &gt; SECTION ]</div>
+                    <div class="wf-box">[ FOOTER ]</div>
+                </div>
+
+            </div>
+            <div class="painel">
+                <h3>Tela Objetivo</h3>
+                <details class="reveal">
+                    <summary class="btn-preto">Mostrar tela objetivo</summary>
+                    <div class="preview">
+
+                    <div style="border:2px solid var(--vermelho); padding:4px;">
+                        <div style="background:var(--vermelho); color:#fff; padding:8px; font-size:0.8em;">header</div>
+                        <div style="background:#ffebee; padding:14px; font-size:0.8em;">main &gt; section</div>
+                        <div style="background:#222; color:#eee; padding:8px; font-size:0.8em;">footer</div>
+                    </div>
+                    <p style="font-size:0.78em; color:#555; margin-top:8px;">As cores aqui são só para você enxergar os limites de cada área — no HTML puro elas ficam invisíveis.</p>
+
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <div class="painel-duplo">
+            <div class="painel">
+                <h3>Esqueleto HTML</h3>
+                <pre><code>&lt;body&gt;
+
+    &lt;header&gt;
+
+    &lt;/header&gt;
+
+    &lt;main&gt;
+
+        &lt;section&gt;
+
+        &lt;/section&gt;
+
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+
+    &lt;/footer&gt;
+
+&lt;/body&gt;</code></pre>
+            </div>
+            <div class="painel">
+                <h3>Esqueleto CSS</h3>
+                <pre><code>body {
+
+}
+
+header {
+
+}
+
+main {
+
+}
+
+section {
+
+}
+
+footer {
+
+}</code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

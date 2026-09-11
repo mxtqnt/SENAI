@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 9 — Sanfona de Perguntas (sem JavaScript) - Exercícios</title>
+    <link rel="stylesheet" href="exercicios.css">
+</head>
+<body>
+    <div class="container">
+        <a href="exercicios.html" class="btn-preto voltar">&larr; Voltar</a>
+
+        <h1>Exercício 9 — Sanfona de Perguntas (sem JavaScript)</h1>
+        <p class="descricao">Construa uma lista de perguntas que abrem e fecham ao clicar, usando apenas as tags <code>&lt;details&gt;</code> e <code>&lt;summary&gt;</code> — sem nenhuma linha de JavaScript.</p>
+
+        <div class="painel-duplo">
+            <div class="painel">
+                <h3>Wireframe</h3>
+
+                <div class="wf">
+                    <div class="wf-box" style="text-align:left;">[ + Pergunta 1 ]</div>
+                    <div class="wf-box" style="text-align:left;">[ + Pergunta 2 ]</div>
+                    <div class="wf-box" style="text-align:left;">[ + Pergunta 3 ]</div>
+                </div>
+
+            </div>
+            <div class="painel">
+                <h3>Tela Objetivo</h3>
+                <details class="reveal">
+                    <summary class="btn-preto">Mostrar tela objetivo</summary>
+                    <div class="preview">
+
+                    <details class="prev-faq" open>
+                        <summary>Dói para doar sangue?</summary>
+                        <p>Não. O desconforto é leve e o processo é rápido.</p>
+                    </details>
+                    <details class="prev-faq">
+                        <summary>Quanto tempo leva?</summary>
+                        <p>De 10 a 15 minutos.</p>
+                    </details>
+
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <div class="painel-duplo">
+            <div class="painel">
+                <h3>Esqueleto HTML</h3>
+                <pre><code>&lt;details&gt;
+    &lt;summary&gt;&lt;/summary&gt;
+    &lt;p&gt;&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+    &lt;summary&gt;&lt;/summary&gt;
+    &lt;p&gt;&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+            </div>
+            <div class="painel">
+                <h3>Esqueleto CSS</h3>
+                <pre><code>details {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 0 16px;
+}
+
+summary {
+    cursor: pointer;
+    padding: 12px 0;
+    font-weight: bold;
+}</code></pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
