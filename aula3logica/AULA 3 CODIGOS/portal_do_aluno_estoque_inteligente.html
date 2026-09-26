@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal do Aluno - Estoque Inteligente</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+    }
+    
+    .font-mono {
+      font-family: 'Space Mono', monospace;
+    }
+
+    .card {
+      border: 2px solid #000000;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .card:hover {
+      background-color: #000000;
+      color: #ffffff;
+      transform: translateY(-4px);
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+    }
+    
+    .card:hover .icon-arrow {
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+    
+    .btn-back {
+      border: 2px solid #000000;
+      background-color: #ffffff;
+      color: #000000;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .btn-back:hover {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .section-title-badge {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 0.25rem 0.75rem;
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-6 md:p-12 lg:p-16">
+
+  <main id="main-menu" class="max-w-7xl mx-auto">
+    <header class="mb-16 border-b-4 border-black pb-8">
+      <p class="text-sm font-bold uppercase tracking-widest mb-2">Lógica de Programação • UC 4</p>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">Estoque Inteligente</h1>
+      <p class="text-xl md:text-2xl mt-4 font-light">Portal de Exercícios Práticos</p>
+    </header>
+
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 flex items-center">
+        <span class="section-title-badge">01</span> Oficina de Vetores
+      </h2>
+      <div id="grid-part-1" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <!-- Cards Parte 1 -->
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 flex items-center">
+        <span class="section-title-badge">02</span> Oficina de Funções
+      </h2>
+      <div id="grid-part-2" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <!-- Cards Parte 2 -->
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 flex items-center">
+        <span class="section-title-badge">03</span> Atividades Avaliativas
+      </h2>
+      <div id="grid-part-3" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Cards Parte 3 -->
+      </div>
+    </section>
+  </main>
+
+  <main id="details-view" class="max-w-5xl mx-auto hidden">
+    <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-4 border-black pb-6">
+      <button onclick="goBack()" class="btn-back px-6 py-3 flex items-center justify-center gap-2 w-full md:w-auto">
+        <i class="fa-solid fa-arrow-left"></i> Voltar aos Exercícios
+      </button>
+      <span id="detail-part-badge" class="font-bold text-sm tracking-wider uppercase border-2 border-black px-4 py-2 self-start md:self-auto"></span>
+    </div>
+
+    <h1 id="detail-title" class="text-3xl md:text-5xl font-extrabold mb-10 leading-tight"></h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="col-span-1 md:col-span-2 space-y-10">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 flex items-center gap-2 border-b-2 border-black pb-2 inline-flex">
+            <i class="fa-solid fa-align-left"></i> Descrição da Atividade
+          </h3>
+          <p id="detail-desc" class="text-lg leading-relaxed text-gray-800"></p>
+        </div>
+        
+        <div>
+          <h3 class="text-2xl font-bold mb-4 flex items-center gap-2 border-b-2 border-black pb-2 inline-flex">
+            <i class="fa-solid fa-terminal"></i> Saída Esperada no Console
+          </h3>
+          <div class="bg-gray-100 border-l-4 border-black p-4 font-mono text-[15px] leading-loose text-gray-900 overflow-x-auto whitespace-pre-wrap" id="detail-output">
+            <!-- Saída injetada aqui -->
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-span-1">
+        <div class="border-2 border-black p-6 sticky top-8 bg-white hover:bg-gray-50 transition-colors">
+          <h3 class="text-xl font-extrabold mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb text-yellow-500 text-2xl"></i> Dica do Professor
+          </h3>
+          <p id="detail-hint" class="text-base text-gray-700 font-medium leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const exercises = [
+      // PARTE 1
+      {
+        part: 1,
+        title: "Desafio 1: O Primeiro Lote",
+        description: "Declare um vetor de inteiros com 5 posições. Preencha manualmente com as quantidades de 5 produtos e, em seguida, crie um laço 'para' que exiba todos os valores.",
+        output: "Quantidade 1: 10\nQuantidade 2: 15\nQuantidade 3: 8\n...",
+        hint: "Lembre-se que o índice do vetor em Portugol começa em 0 e vai até o 4."
+      },
+      {
+        part: 1,
+        title: "Desafio 2: Registro de Nomes",
+        description: "Declare um vetor de texto para armazenar o nome de 3 produtos, lidos via teclado. Imprima os nomes na ordem inversa.",
+        output: "Produto 3: Teclado\nProduto 2: Mouse\nProduto 1: Monitor",
+        hint: "Para imprimir invertido, o laço 'para' deve começar no índice 2 e ir diminuindo (passo -1) até 0."
+      },
+      {
+        part: 1,
+        title: "Desafio 3: Somatório do Estoque",
+        description: "Crie um vetor com 5 quantidades. Faça um laço de repetição que percorra o vetor e some todas as quantidades.",
+        output: "O total de itens no estoque é: 45",
+        hint: "Declare a variável acumuladora (ex: total = 0) antes do laço. Dentro do laço faça: total = total + vetor[i]."
+      },
+      {
+        part: 1,
+        title: "Desafio 4: A Busca Simples",
+        description: "Crie um vetor com 5 códigos predefinidos. Peça ao usuário um código. Percorra o vetor e se encontrar, avise que foi encontrado.",
+        output: "Sucesso: O produto foi encontrado no sistema!",
+        hint: "Use uma estrutura condicional 'se (vetor[i] == codigo_buscado)' dentro do laço."
+      },
+      {
+        part: 1,
+        title: "Desafio 5: Onde está o produto?",
+        description: "Melhore o desafio da busca simples, armazenando a posição (índice) onde o item foi encontrado em uma variável e exibindo-a no final.",
+        output: "O produto foi encontrado no índice: 2\n(ou)\nProduto não encontrado no sistema.",
+        hint: "Inicialize a variável de posição com -1 antes do laço. Se ela terminar valendo -1, significa que o produto não existe."
+      },
+      {
+        part: 1,
+        title: "Desafio 6: Estoque Crítico",
+        description: "Crie um vetor de quantidades. Percorra-o e imprima os índices e valores apenas dos produtos com quantidade menor que 5.",
+        output: "Itens em situação crítica:\nÍndice 1 - Quantidade: 2\nÍndice 4 - Quantidade: 0",
+        hint: "Combine o laço 'para' com a verificação lógica 'se (vetor[i] < 5)'."
+      },
+      {
+        part: 1,
+        title: "Desafio 7: O Produto Mais Cheio",
+        description: "Percorra o vetor de quantidades para descobrir e exibir qual é o maior valor numérico armazenado.",
+        output: "A maior quantidade armazenada no momento é: 120",
+        hint: "Crie a variável 'maior' iniciando com vetor[0] e vá substituindo sempre que encontrar alguém superior."
+      },
+      {
+        part: 1,
+        title: "Desafio 8: O Produto Quase Zerado",
+        description: "Assim como no desafio anterior, crie a lógica para encontrar a menor quantidade presente no vetor.",
+        output: "A menor quantidade armazenada no momento é: 1",
+        hint: "Crie a variável 'menor' recebendo vetor[0] e substitua sempre que o laço encontrar um valor inferior a ela."
+      },
+      {
+        part: 1,
+        title: "Desafio 9: Vetores Paralelos",
+        description: "Crie um vetor de nomes e outro de preços. Preencha-os e use um único laço para exibir os dados associados lado a lado.",
+        output: "Nome: Mouse - Preço: R$ 45.50\nNome: Teclado - Preço: R$ 80.00",
+        hint: "O segredo dos vetores paralelos é usar a mesma variável de controle (ex: i) para acessar ambos no mesmo momento."
+      },
+      {
+        part: 1,
+        title: "Desafio 10: Reajuste de Preços",
+        description: "Aplique um aumento de 10% a todos os preços salvos no vetor usando um laço de repetição, salvando o novo valor de volta no vetor.",
+        output: "Preços Atualizados:\nProduto 1: R$ 110.00\nProduto 2: R$ 220.00",
+        hint: "A instrução será parecida com: precos[i] = precos[i] * 1.10."
+      },
+
+      // PARTE 2
+      {
+        part: 2,
+        title: "Desafio 11: Cabeçalho do Sistema",
+        description: "Crie uma função sem retorno ('vazio') que receba um texto por parâmetro e imprima-o formatado com bordas.",
+        output: "====================\nSISTEMA DE ESTOQUE\n====================",
+        hint: "Basta colocar os comandos 'escreva' dentro do bloco da função. Chame-a passando uma string."
+      },
+      {
+        part: 2,
+        title: "Desafio 12: A Regra de Negócio",
+        description: "Crie a função calcular_valor_total() recebendo a quantidade e o preço. Ela deve multiplicar e retornar o resultado para o programa.",
+        output: "O valor total calculado pela função é: R$ 350.00",
+        hint: "A função precisa ser do tipo 'real' e usar o comando 'retorne (quantidade * preco)'."
+      },
+      {
+        part: 2,
+        title: "Desafio 13: Validador de Estoque",
+        description: "Crie uma função que receba uma quantidade e retorne um valor lógico (verdadeiro/falso) informando se há disponibilidade no estoque.",
+        output: "Status de Disponibilidade: VERDADEIRO (ou FALSO)",
+        hint: "Retorne verdadeiro se a variável de quantidade for maior que zero."
+      },
+      {
+        part: 2,
+        title: "Desafio 14: Formatador de Relatório",
+        description: "Função que recebe código, nome e quantidade por parâmetros, formata isso numa única cadeia de texto (string) e retorna o resultado.",
+        output: "[101] - Monitor Gamer - Qtd: 15",
+        hint: "Use o sinal de mais (+) para concatenar textos fixos com os valores das variáveis passadas."
+      },
+      {
+        part: 2,
+        title: "Desafio 15: Isolando a Busca",
+        description: "Migre a lógica da busca simples (Desafio 5) para dentro de uma função. Se encontrar o código, retorne o índice. Se o laço terminar e não encontrar, retorne -1.",
+        output: "Índice retornado pela função: 3\n(ou -1 se não achar)",
+        hint: "Dar um 'retorne i' interrompe o laço imediatamente, o que otimiza a sua função!"
+      },
+      {
+        part: 2,
+        title: "Desafio 16: O Mais Barato",
+        description: "Crie uma função que receba dois preços numéricos (A e B). A função deve compará-los e retornar qual é o menor dos dois.",
+        output: "Entre R$ 50.0 e R$ 30.0, o menor é: R$ 30.0",
+        hint: "Isso ajuda a treinar a lógica base que usaremos para algoritmos de ordenação."
+      },
+      {
+        part: 2,
+        title: "Desafio 17: Troca de Posições",
+        description: "Dado um vetor com dois nomes invertidos, faça a troca dos valores nas posições sem perder o dado original.",
+        output: "Antes: [1] Teclado [2] Mouse\nDepois: [1] Mouse [2] Teclado",
+        hint: "É impossível trocar direto. Você precisa salvar o vetor[0] temporariamente numa variável auxiliar!"
+      },
+      {
+        part: 2,
+        title: "Desafio 18: Calculando a Média do Estoque",
+        description: "Função que recebe total financeiro e quantidade de produtos. Calcule a média, protegendo o código de divisões por zero.",
+        output: "A média de valor por produto é: R$ 45.00",
+        hint: "Antes de dividir, verifique 'se (quantidade == 0)'. Se for, retorne 0.0."
+      },
+      {
+        part: 2,
+        title: "Desafio 19: Juntando as Peças",
+        description: "Crie um programa que faça a busca e depois passe a quantidade e preço desse item encontrado para a função de cálculo financeiro.",
+        output: "Item 102 localizado. Calculando...\nValor financeiro deste item: R$ 1200.00",
+        hint: "Integração é a chave da SAP! Chame a função de busca e guarde o resultado numa variável de índice para acessar as outras tabelas."
+      },
+      {
+        part: 2,
+        title: "Desafio 20: O Menu Principal",
+        description: "Construa o esqueleto de menu das atividades. Uma estrutura 'enquanto' que chama uma função que desenha as opções e lê a resposta.",
+        output: "[1] Cadastrar\n[2] Consultar\n[0] Sair\nEscolha uma opção: ",
+        hint: "A estrutura while (opcao != sair) vai rodar tudo o que formos programar daqui pra frente."
+      },
+
+      // PARTE 3 (Atividades com instruções complexas baseadas no Prompt)
+      {
+        part: 3,
+        title: "Atividade 1: Cadastro e Consulta de Estoque por Código (6 pontos)",
+        description: "Crie um sistema com um menu interativo utilizando vetores paralelos globais para armazenar informações de até 10 produtos (Código, Nome, Quantidade e Preço). A opção de Cadastro deve ler os dados e salvar nos vetores. A opção de Consulta deve solicitar ao usuário um Código e, utilizando uma função de busca com retorno, procurar esse código no vetor. Se encontrar, o programa deve exibir a posição e os dados completos. Se não, deve informar que não existe.",
+        output: "--> No Cadastro:\nProduto cadastrado com sucesso na posição 0!\n\n--> Na Consulta (Sucesso):\nPRODUTO ENCONTRADO (Índice 0): Teclado | 15 unidades | R$ 120.00\n\n--> Na Consulta (Falha):\nErro: Código 999 não localizado no estoque.",
+        hint: "Crie uma variável inteira 'total_cadastrados'. A sua função de busca não deve imprimir nada (não use 'escreva' dentro dela), ela deve apenas retornar o índice 'i' ou '-1'. Use essa função de busca antes de fazer um novo cadastro para impedir códigos repetidos!"
+      },
+      {
+        part: 3,
+        title: "Atividade 2: Relatório de Estoque e Ordenação (7 pontos)",
+        description: "Expanda o sistema da Atividade 1 adicionando três novas opções no menu, cada uma controlada por uma função própria:\n\n1. Valor Total: Calcular e retornar o valor total financeiro em estoque.\n2. Alerta de Estoque: Encontrar e retornar o índice do produto com a menor quantidade disponível.\n3. Ordenação e Relatório: Ordenar a base de dados de forma crescente (pela Quantidade ou pelo Preço) utilizando o Bubble Sort e exibir a lista formatada.",
+        output: "--> Valor Total:\nO valor total financeiro em estoque é: R$ 4500.00\n\n--> Alerta de Estoque:\nAtenção: O produto \"Cabo HDMI\" possui a menor quantidade em estoque (2 unidades).\n\n--> Ordenação:\nEstoque ordenado por quantidade:\nCód: 105 | Cabo HDMI | Qtd: 2\nCód: 101 | Mouse | Qtd: 10",
+        hint: "Na função da Menor Quantidade, retorne o *índice* onde ela está, para que o menu possa fazer 'nomes[indice]'. Atenção redobrada na ordenação: O segredo dos vetores paralelos é que, se você inverter a quantidade, é obrigatório inverter o nome, o código e o preço nas mesmas posições usando variáveis auxiliares para cada um!"
+      }
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCards(1, 'grid-part-1');
+      renderCards(2, 'grid-part-2');
+      renderCards(3, 'grid-part-3');
+    });
+
+    function renderCards(partNumber, containerId) {
+      const container = document.getElementById(containerId);
+      const filtered = exercises.filter(ex => ex.part === partNumber);
+      
+      filtered.forEach((ex, index) => {
+        const card = document.createElement('div');
+        card.className = "card p-6 flex flex-col justify-between cursor-pointer bg-white group h-full";
+        card.onclick = () => openDetails(ex);
+        
+        let label = partNumber === 3 ? `Atividade ${index + 1}` : `Desafio ${index + 1}`;
+        if(partNumber === 2) label = `Desafio ${index + 11}`; // Ajuste visual de numeração
+        
+        card.innerHTML = `
+          <div>
+            <p class="text-sm font-bold opacity-60 uppercase mb-3 border-b-2 border-transparent group-hover:border-white inline-block pb-1 transition-all">${label}</p>
+            <h3 class="text-2xl font-bold leading-snug mb-3">${ex.title.split(':')[0]}</h3>
+            <p class="text-sm font-medium opacity-80 line-clamp-3">${ex.title.includes(':') ? ex.title.split(':')[1].trim() : ''}</p>
+          </div>
+          <div class="flex justify-end pt-6 mt-4">
+            <div class="w-10 h-10 border-2 border-black group-hover:border-white flex items-center justify-center transition-all">
+              <i class="fa-solid fa-arrow-right icon-arrow text-black group-hover:text-white transition-transform"></i>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function openDetails(exercise) {
+      document.getElementById('main-menu').classList.add('hidden');
+      document.getElementById('details-view').classList.remove('hidden');
+      window.scrollTo(0, 0);
+
+      document.getElementById('detail-title').innerText = exercise.title;
+      document.getElementById('detail-desc').innerText = exercise.description;
+      document.getElementById('detail-output').innerText = exercise.output;
+      document.getElementById('detail-hint').innerText = exercise.hint;
+      
+      let badgeText = "";
+      if(exercise.part === 1) badgeText = "Parte 1: Vetores";
+      if(exercise.part === 2) badgeText = "Parte 2: Funções";
+      if(exercise.part === 3) badgeText = "Avaliação Principal";
+      
+      document.getElementById('detail-part-badge').innerText = badgeText;
+    }
+
+    function goBack() {
+      document.getElementById('details-view').classList.add('hidden');
+      document.getElementById('main-menu').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>
