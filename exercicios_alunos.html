@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercícios - Lógica de Programação</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .exercise-card {
+            border: 2px solid #000000;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: #ffffff;
+        }
+        .tips {
+            font-style: italic;
+            border-left: 4px solid #000;
+            padding-left: 10px;
+            margin: 15px 0;
+        }
+        .answer-section {
+            margin-top: 20px;
+            border-top: 1px dashed #000;
+            padding-top: 15px;
+        }
+        .answer-content {
+            filter: blur(8px);
+            transition: filter 0.3s;
+            user-select: none;
+            pointer-events: none;
+        }
+        .answer-content.revealed {
+            filter: blur(0);
+            user-select: auto;
+            pointer-events: auto;
+        }
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #000;
+            padding: 15px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        .toggle-btn {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .toggle-btn:hover {
+            background-color: #333333;
+        }
+    </style>
+    <script>
+        function toggleAnswer(btn) {
+            const content = btn.nextElementSibling;
+            if (content.classList.contains('revealed')) {
+                content.classList.remove('revealed');
+                btn.innerHTML = '👁️ Revelar Resposta';
+            } else {
+                content.classList.add('revealed');
+                btn.innerHTML = '👁️ Ocultar Resposta';
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Exercícios em Portugol (Vetores Estáticos)</h1>
+
+    <div class="exercise-card">
+        <h3>Exercício 1: Descobrindo o Índice</h3>
+        <p><strong>Descrição:</strong> Dado um vetor de 5 nomes já preenchido, escreva um algoritmo que receba um nome digitado pelo usuário e informe em qual posição (índice) esse nome se encontra.</p>
+        <div class="tips"><strong>Dicas:</strong> Use um laço para (for) para percorrer o vetor. Crie uma variável inteira posicao_encontrada iniciada com -1. Se o nome for igual ao elemento do vetor, guarde o índice nessa variável e use o comando pare (break).</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+programa {
+  funcao inicio() {
+    cadeia nomes[5] = {"Ana", "Bruno", "Carlos", "Daniela", "Eduardo"}
+    cadeia busca
+    inteiro posicao = -1
+    
+    escreva("Digite um nome para buscar: ")
+    leia(busca)
+    
+    para(inteiro i=0; i < 5; i++){
+      se(nomes[i] == busca){
+        posicao = i
+        pare
+      }
+    }
+    escreva("Posicao: ", posicao)
+  }
+}
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3>Exercício 2: Deslocamento Manual de Elementos</h3>
+        <p><strong>Descrição:</strong> Você possui um vetor numérico de 5 posições [10, 20, 30, 40, 50]. O elemento da posição 2 (o número 30) precisa ser apagado. Faça um laço de repetição que mova os elementos das posições 3 e 4 uma casa para trás, cobrindo o 30.</p>
+        <div class="tips"><strong>Dicas:</strong> O laço deve começar a partir do índice que será apagado (2) e ir até o penúltimo elemento. A lógica principal será vetor[i] = vetor[i+1].</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+programa {
+  funcao inicio() {
+    inteiro vetor[5] = {10, 20, 30, 40, 50}
+    // Removendo o índice 2 (valor 30)
+    para(inteiro i=2; i < 4; i++){
+      vetor[i] = vetor[i+1]
+    }
+    // Impressão para teste
+    para(inteiro i=0; i < 4; i++){
+      escreva(vetor[i], " ")
+    }
+  }
+}
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3>Exercício 3: Tratamento de Elemento Inexistente</h3>
+        <p><strong>Descrição:</strong> Crie um algoritmo que busca um produto em um vetor. Se o produto existir, exiba "Produto encontrado". Se o laço terminar e o produto não estiver no vetor, o sistema deve exibir de forma elegante: "Erro: Produto não cadastrado".</p>
+        <div class="tips"><strong>Dicas:</strong> Use uma variável do tipo logico (booleana) chamada encontrou, inicializada como falso. Mude para verdadeiro apenas se achar o item. Faça o teste final (se encontrou == falso) fora do laço.</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+programa {
+  funcao inicio() {
+    cadeia produtos[3] = {"Mesa", "Cadeira", "Sofa"}
+    cadeia busca = "Armario"
+    logico encontrou = falso
+    
+    para(inteiro i=0; i < 3; i++){
+      se(produtos[i] == busca){
+        encontrou = verdadeiro
+        escreva("Produto encontrado.")
+        pare
+      }
+    }
+    se(encontrou == falso){
+      escreva("Erro: Produto nao cadastrado.")
+    }
+  }
+}
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3>Exercício 4: A Remoção Completa</h3>
+        <p><strong>Descrição:</strong> Una os exercícios 1 e 2. Crie um vetor de 5 clientes e uma variável total_clientes = 5. Peça um nome para remover. Encontre o índice desse nome. Se encontrar, faça o deslocamento dos elementos seguintes para trás e diminua a variável total_clientes em 1. Imprima a lista no final.</p>
+        <div class="tips"><strong>Dicas:</strong> Lembre-se de que, ao imprimir, o laço de listagem deve ir de 0 até total_clientes - 1. A última posição original do vetor não importará mais, pois o total_clientes ditará o limite.</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+programa {
+  funcao inicio() {
+    cadeia clientes[5] = {"João", "Maria", "José", "Ana", "Bia"}
+    inteiro total = 5
+    cadeia busca
+    inteiro pos_remover = -1
+    
+    escreva("Quem deseja remover? ")
+    leia(busca)
+    
+    para(inteiro i=0; i < total; i++){
+      se(clientes[i] == busca){
+        pos_remover = i
+        pare
+      }
+    }
+    
+    se(pos_remover != -1){
+      para(inteiro i=pos_remover; i < total - 1; i++){
+        clientes[i] = clientes[i+1]
+      }
+      total = total - 1
+      escreva("Removido com sucesso.
+")
+    } senao {
+      escreva("Nao encontrado.
+")
+    }
+    
+    // Lista atualizada
+    para(inteiro i=0; i < total; i++){
+      escreva(clientes[i], "
+")
+    }
+  }
+}
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3>Exercício 5: Adicionando Opção em Menu</h3>
+        <p><strong>Descrição:</strong> Pegue uma estrutura de menu simples (enquanto opcao != 3) com opções 1 e 2. Adicione uma nova opção de número 3 para "Remover" e altere a condição de saída para o número 4.</p>
+        <div class="tips"><strong>Dicas:</strong> Tenha cuidado com a estrutura se / senao se. Garanta que a opção de saída só encerre o programa se for escolhido exatamente o número correto.</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+programa {
+  funcao inicio() {
+    inteiro opcao = 0
+    enquanto(opcao != 4){
+      escreva("
+1 - Cadastro
+2 - Lista
+3 - Remover
+4 - Sair
+Opcao: ")
+      leia(opcao)
+      se(opcao == 1){ escreva("Cadastrando...") }
+      senao se(opcao == 2){ escreva("Listando...") }
+      senao se(opcao == 3){ escreva("Removendo...") }
+      senao se(opcao == 4){ escreva("Saindo...") }
+      senao { escreva("Invalido") }
+    }
+  }
+}
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <h1>Exercícios em Python (Listas Dinâmicas)</h1>
+
+    <div class="exercise-card">
+        <h3>Exercício 1: Busca Manual de Índice em Lista</h3>
+        <p><strong>Descrição:</strong> Dada a lista frutas = ["Maca", "Banana", "Uva", "Pera"], solicite uma fruta ao usuário. Usando um laço for clássico com range(len(frutas)), encontre e imprima o índice numérico da fruta digitada.</p>
+        <div class="tips"><strong>Dicas:</strong> Embora Python tenha o método .index(), treine a lógica base usando for i in range(len(frutas)): para entender como a máquina varre a memória.</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+frutas = ["Maca", "Banana", "Uva", "Pera"]
+busca = input("Digite a fruta: ")
+posicao = -1
+
+for i in range(len(frutas)):
+    if frutas[i] == busca:
+        posicao = i
+        break
+
+print(f"Posicao encontrada: {posicao}")
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3>Exercício 2: O Método Seguro de Remoção</h3>
+        <p><strong>Descrição:</strong> Escreva um script que tenta remover a cor "Azul" de uma lista de cores. O programa não pode quebrar (apresentar ValueError) caso "Azul" não esteja na lista.</p>
+        <div class="tips"><strong>Dicas:</strong> Antes de usar o método cores.remove("Azul"), utilize o operador lógico in (ex: if "Azul" in cores:) para garantir que o elemento existe.</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+cores = ["Vermelho", "Verde", "Amarelo"]
+busca = "Azul"
+
+if busca in cores:
+    cores.remove(busca)
+    print("Cor removida com sucesso.")
+else:
+    print("Erro: Cor nao cadastrada na base de dados.")
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3>Exercício 3: Deslocamento Manual em Python</h3>
+        <p><strong>Descrição:</strong> Para entender o que o Python faz nos bastidores, crie uma lista [100, 200, 300, 400, 500]. Peça para remover o índice 1. Sem usar .remove(), .pop() ou del, faça um laço for que desloque os itens da direita para a esquerda, e no final remova o último item duplicado usando .pop() vazio.</p>
+        <div class="tips"><strong>Dicas:</strong> O laço deve ir do índice a ser removido até o penúltimo. lista[i] = lista[i+1]. O último comando será lista.pop().</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+lista = [100, 200, 300, 400, 500]
+indice_remover = 1 # Remover o 200
+
+# Desloca da direita para a esquerda
+for i in range(indice_remover, len(lista) - 1):
+    lista[i] = lista[i+1]
+    
+# Remove o item duplicado no final
+lista.pop()
+print(lista) # Saida: [100, 300, 400, 500]
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3>Exercício 4: Função de Remoção com Retorno de Status</h3>
+        <p><strong>Descrição:</strong> Crie uma função chamada deletar_item(lista, nome). Se o nome for encontrado e removido, a função retorna True. Se não for encontrado, retorna False. Fora da função, imprima uma mensagem de sucesso ou falha com base no retorno.</p>
+        <div class="tips"><strong>Dicas:</strong> Funções em Python são ótimas para encapsular ações perigosas. Use um bloco try / except ValueError ou a verificação com in dentro da função.</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+def deletar_item(lista, nome):
+    if nome in lista:
+        lista.remove(nome)
+        return True
+    return False
+
+usuarios = ["Tiago", "Julia", "Marcos"]
+nome_remover = input("Quem deseja remover? ")
+
+if deletar_item(usuarios, nome_remover):
+    print("Sucesso: Usuario removido.")
+else:
+    print("Falha: Usuario inexistente.")
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3>Exercício 5: Integração no Menu com Validação</h3>
+        <p><strong>Descrição:</strong> Crie um laço while True: simulando um sistema. Tenha a opção "1 - Remover". Quando o usuário digitar 1, peça o nome. Chame uma lógica de remoção. Caso o usuário digite letras em vez da opção numérica do menu, trate o erro sem fechar o sistema.</p>
+        <div class="tips"><strong>Dicas:</strong> Para ler a opção do menu, use um bloco try / except ValueError. Isso prepara o aluno para cenários reais onde o usuário digita texto no lugar de números.</div>
+        <div class="answer-section">
+            <button class="toggle-btn" onclick="toggleAnswer(this)">👁️ Revelar Resposta</button>
+            <div class="answer-content">
+<pre>
+usuarios = ["Aline", "Felipe"]
+while True:
+    print("\n1 - Remover Usuario\n2 - Sair")
+    try:
+        opcao = int(input("Escolha: "))
+    except ValueError:
+        print("Erro: Digite apenas numeros.")
+        continue
+
+    if opcao == 1:
+        nome = input("Digite o nome: ")
+        if nome in usuarios:
+            usuarios.remove(nome)
+            print("Removido.")
+        else:
+            print("Nao encontrado.")
+    elif opcao == 2:
+        print("Saindo...")
+        break
+    else:
+        print("Opcao invalida.")
+</pre>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
