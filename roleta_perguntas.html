@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Roleta de Perguntas - Sistema Ozzy</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+        h1, h2 {
+            border-bottom: 2px solid #000000;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .roleta-container {
+            border: 3px solid #000000;
+            padding: 30px;
+            margin-top: 40px;
+            background: #fcfcfc;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .pergunta-box {
+            border: 1px dashed #000000;
+            padding: 20px;
+            margin: 15px 0;
+            width: 100%;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #ffffff;
+        }
+        .btn-spin {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+        .btn-spin:hover {
+            background-color: #333333;
+        }
+        .btn-spin:disabled {
+            background-color: #999999;
+            cursor: not-allowed;
+        }
+        .instrucoes {
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Roleta de Avaliação Individual</h1>
+    <h2>Atividade SAP 03 - Sistema Ozzy</h2>
+    
+    <p class="instrucoes">Clique no botão abaixo para girar a roleta. Duas perguntas aleatórias serão sorteadas. Todas as 10 perguntas sempre voltam para a roleta a cada novo giro.</p>
+
+    <button id="btn-sortear" class="btn-spin" onclick="girarRoleta()">🔄 Girar Roleta (Sortear 2)</button>
+
+    <div class="roleta-container">
+        <div id="res1" class="pergunta-box">Aguardando sorteio da Pergunta 1...</div>
+        <div id="res2" class="pergunta-box">Aguardando sorteio da Pergunta 2...</div>
+    </div>
+
+    <script>
+        const perguntas = [
+            "[Parâmetros]: Me mostre a linha exata onde você captura o nome digitado no menu (opção 5) e a linha onde você envia esse dado como parâmetro para a função de remoção.",
+            "[Busca / Search]: Em qual parte do código dentro da sua função você localiza em qual posição (índice) está o usuário que eu pedi para remover?",
+            "[Tratamento de Erros]: O que o seu código faz, e onde está o bloco se/senao (if/else), que trata a situação em que eu digito um nome que não existe na base da empresa Ozzy?",
+            "[Deslocamento]: Me mostre o laço de repetição (para/for) responsável por 'puxar' os registros para trás e cobrir o buraco do usuário removido. Como ele sabe onde parar?",
+            "[Controle de Tamanho]: Quando excluímos um registro no vetor estático, o tamanho útil diminui. Onde no seu código você atualiza (diminui) a variável que controla o total de usuários cadastrados?",
+            "[Prevenção de Bugs]: Após remover um usuário, se eu for na opção 2 (Listar), em qual linha do código você garante que ele não vai imprimir posições vazias, nulas ou duplicadas no final do sistema?",
+            "[Escopo e Organização]: Por que a regra de remoção e deslocamento foi colocada dentro de uma função/método isolado ao invés de ser feita diretamente dentro daquele bloco da Opção 5 do menu principal?",
+            "[Testes de Borda]: Durante os testes da Atividade 2, o que o seu sistema executou quando você testou a remoção do último usuário da lista? Ele precisou rodar o laço de deslocamento ou pulou direto para a redução do total?",
+            "[Sensibilidade de Dados]: Se eu tenho 'Alice' cadastrada com 'A' maiúsculo e o usuário digitar 'alice' com 'a' minúsculo na hora de remover, o seu código consegue achar? Onde essa comparação acontece?",
+            "[Prova de Fogo / Prática]: Rode o programa agora, por favor. Cadastre o seu nome e o meu na lista. Agora exclua o seu nome e liste novamente para me provar que o meu registro avançou de posição sem ser apagado ou duplicado."
+        ];
+
+        function girarRoleta() {
+            const btn = document.getElementById("btn-sortear");
+            const res1 = document.getElementById("res1");
+            const res2 = document.getElementById("res2");
+            
+            btn.disabled = true;
+            btn.innerText = "Sorteando...";
+            
+            let count = 0;
+            // Efeito visual de giro da roleta
+            const interval = setInterval(() => {
+                res1.innerText = perguntas[Math.floor(Math.random() * perguntas.length)];
+                res2.innerText = perguntas[Math.floor(Math.random() * perguntas.length)];
+                count++;
+                
+                if (count > 15) {
+                    clearInterval(interval);
+                    
+                    // Sorteio real garantindo que sejam 2 perguntas diferentes
+                    let indices = [];
+                    while(indices.length < 2) {
+                        let r = Math.floor(Math.random() * perguntas.length);
+                        if(indices.indexOf(r) === -1) {
+                            indices.push(r);
+                        }
+                    }
+                    
+                    res1.innerText = "PERGUNTA 1: " + perguntas[indices[0]];
+                    res2.innerText = "PERGUNTA 2: " + perguntas[indices[1]];
+                    
+                    btn.disabled = false;
+                    btn.innerText = "🔄 Girar Roleta Novamente";
+                }
+            }, 80); // Velocidade de troca (80ms)
+        }
+    </script>
+</body>
+</html>
