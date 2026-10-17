@@ -1,0 +1,267 @@
+/* ==========================================
+   Variáveis e Reset
+   ========================================== */
+:root {
+    --black: #000000;
+    --dark-gray: #1a1a1a;
+    --gray: #e0e0e0;
+    --white: #ffffff;
+    --font-main: 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   Tipografia e Elementos Base
+   ========================================== */
+h1, h2, h3 {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--black);
+    transition: all 0.3s ease;
+}
+
+/* ==========================================
+   Cabeçalho e Navegação
+   ========================================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    border-bottom: 2px solid var(--black);
+    background-color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.nav-menu a:hover {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 0.2rem 0.5rem;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 5%;
+    border-bottom: 2px solid var(--black);
+    background-image: repeating-linear-gradient(45deg, var(--white) 0, var(--white) 2px, var(--gray) 2px, var(--gray) 4px);
+}
+
+.hero-content {
+    background-color: var(--white);
+    padding: 3rem;
+    border: 4px solid var(--black);
+    box-shadow: 10px 10px 0px var(--black);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* ==========================================
+   Botões Flat
+   ========================================== */
+.btn, .btn-outline, .btn-outline-light {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+}
+
+.btn:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--black);
+    border: 2px solid var(--black);
+}
+
+.btn-outline:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.btn-outline-light {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.btn-outline-light:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/* ==========================================
+   Seções de Destinos e Grid (Cards)
+   ========================================== */
+.destinos-section {
+    padding: 5rem 5%;
+    border-bottom: 2px solid var(--black);
+}
+
+.destinos-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.bg-dark {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    border: 2px solid var(--black);
+    background-color: var(--white);
+    transition: transform 0.2s ease;
+}
+
+.dark-card {
+    border: 2px solid var(--white);
+    background-color: var(--dark-gray);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img {
+    height: 200px;
+    background-color: var(--gray);
+    border-bottom: 2px solid var(--black);
+    /* Força imagens coloridas a ficarem preto e branco caso sejam inseridas */
+    filter: grayscale(100%);
+}
+
+.dark-card .card-img {
+    border-bottom: 2px solid var(--white);
+}
+
+/* Padrões geométricos substituindo imagens reais para manter o design flat */
+.placeholder-nacional-1 { background-image: repeating-linear-gradient(0deg, transparent, transparent 10px, #000 10px, #000 12px); }
+.placeholder-nacional-2 { background-image: repeating-linear-gradient(90deg, transparent, transparent 10px, #000 10px, #000 12px); }
+.placeholder-inter-1 { background-image: repeating-linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333), repeating-linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333); background-size: 20px 20px; background-position: 0 0, 10px 10px; }
+.placeholder-inter-2 { background-image: radial-gradient(#fff 15%, transparent 16%), radial-gradient(#fff 15%, transparent 16%); background-size: 20px 20px; background-position: 0 0, 10px 10px; }
+
+.card-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.card-content h3 {
+    margin-bottom: 1rem;
+}
+
+.card-content p {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   Rodapé
+   ========================================== */
+.footer {
+    padding: 2rem 5%;
+    text-align: center;
+    background-color: var(--white);
+    font-weight: bold;
+}
+
+/* ==========================================
+   Responsividade (Mobile)
+   ========================================== */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-menu ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .hero-content {
+        padding: 1.5rem;
+        box-shadow: 5px 5px 0px var(--black);
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}

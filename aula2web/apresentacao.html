@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slides - Estrutura de Interface Web</title>
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #e0e0e0;
+            --font-main: 'Helvetica Neue', Arial, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background-color: var(--gray); color: var(--black); display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        .presentation-container { width: 90vw; max-width: 1000px; height: 80vh; background-color: var(--white); border: 6px solid var(--black); box-shadow: 15px 15px 0px var(--black); position: relative; display: flex; flex-direction: column; }
+        .slide { display: none; flex-direction: column; justify-content: center; align-items: flex-start; padding: 4rem; height: 100%; animation: fadeIn 0.4s ease-in-out; }
+        .slide.active { display: flex; }
+        
+        .slide-badge { background-color: var(--black); color: var(--white); padding: 5px 15px; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 2rem; letter-spacing: 2px; }
+        .slide h1 { font-size: 3.5rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -2px; }
+        .slide h2 { font-size: 2.5rem; margin-bottom: 1.5rem; border-bottom: 4px solid var(--black); padding-bottom: 10px; }
+        .slide p, .slide li { font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.5; }
+        .slide ul { margin-left: 2rem; }
+        
+        .geometry { width: 100px; height: 20px; background: repeating-linear-gradient(45deg, var(--black), var(--black) 5px, transparent 5px, transparent 10px); margin-bottom: 2rem; }
+        
+        .controls { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; border-top: 4px solid var(--black); background-color: var(--white); }
+        .btn { background-color: var(--white); color: var(--black); border: 3px solid var(--black); padding: 10px 30px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; }
+        .btn:hover { background-color: var(--black); color: var(--white); }
+        .slide-counter { font-weight: bold; font-size: 1.2rem; letter-spacing: 2px; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .slide h1 { font-size: 2.5rem; } .slide h2 { font-size: 1.8rem; } .slide p, .slide li { font-size: 1.2rem; } .slide { padding: 2rem; } }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        
+        <div class="slide active">
+            <div class="geometry"></div>
+            <div class="slide-badge">Aula Presencial</div>
+            <h1>Estrutura de<br>Interface Web</h1>
+            <p><strong>Unidade Curricular:</strong> Produção de Interfaces para Internet</p>
+            <p><strong>Projeto:</strong> Site Responsivo - Agência de Turismo (FlatTour)</p>
+            <p style="margin-top: 2rem; font-size: 1.2rem;">Professor(a): Ana Silva</p>
+        </div>
+
+        <div class="slide">
+            <div class="slide-badge">Organização do Tempo</div>
+            <h2>Cronograma (8 Horas)</h2>
+            <ul>
+                <li><strong>Horas 1 a 3:</strong> Finalização do conteúdo EaD (Etapas 1 e 2).</li>
+                <li><strong>Hora 4:</strong> Setup do ambiente (VS Code + Extensão Live Server) e Arquitetura dos arquivos.</li>
+                <li><strong>Horas 5 e 6:</strong> Codificação (HTML Semântico + CSS Puro B&W).</li>
+                <li><strong>Hora 7:</strong> Responsividade (Mobile First e Media Queries).</li>
+                <li><strong>Hora 8:</strong> Testes de compatibilidade e documentação final.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <div class="slide-badge">Recuperação EaD</div>
+            <h2>Etapas 1 e 2: Base do Projeto</h2>
+            <p>Antes de codificar, precisamos da estrutura lógica:</p>
+            <ul>
+                <li><strong>Conteúdo:</strong> Escolha dos destinos e textos descritivos.</li>
+                <li><strong>Wireframe:</strong> Esboço visual da estrutura (layout e grids).</li>
+                <li><strong>Navegação:</strong> Máquina de estados para os hiperlinks (home > destinos > detalhes).</li>
+                <li><strong>Estilo:</strong> Definição das fontes (usando WhatFont) e esquema de cores (Preto e Branco).</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <div class="slide-badge">Laboratório</div>
+            <h2>Etapa 3: Desenvolvimento</h2>
+            <p>A transição do visual para o código estruturado.</p>
+            <ul>
+                <li><strong>Diretórios:</strong> Criação das pastas css/, img/ e do arquivo index.html.</li>
+                <li><strong>Semântica:</strong> Uso estrito de <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, e <code>&lt;article&gt;</code>.</li>
+                <li><strong>Layout Flex/Grid:</strong> Alinhamento com Flexbox no topo e CSS Grid para a disposição fluída dos pacotes de turismo.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <div class="slide-badge">Validação</div>
+            <h2>Testes e Responsividade</h2>
+            <p>Um site moderno precisa funcionar em qualquer tela.</p>
+            <ul>
+                <li><strong>Live Server:</strong> Validação em tempo real das alterações feitas no código.</li>
+                <li><strong>Mobile First:</strong> O CSS padrão deve ser pensado para o celular, usando <code>@media (min-width: 768px)</code> para telas maiores.</li>
+                <li><strong>Cross-browser:</strong> Abrir o IP local no Chrome, Firefox e Edge para validar a renderização.</li>
+                <li><strong>Relatório Final:</strong> Arquivo txt ou pdf descrevendo as alterações.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <div class="geometry"></div>
+            <h1>Mãos à Obra.</h1>
+            <p>Abram o VS Code e vamos iniciar as Etapas 1 e 2.</p>
+            <p style="margin-top: 2rem; font-weight: bold;">Dúvidas?</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="prevBtn" onclick="changeSlide(-1)">Anterior</button>
+            <div class="slide-counter"><span id="currentSlideNum">1</span> / <span id="totalSlidesNum">6</span></div>
+            <button class="btn" id="nextBtn" onclick="changeSlide(1)">Próximo</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0; const slides = document.querySelectorAll('.slide'); const totalSlides = slides.length;
+        document.getElementById('totalSlidesNum').innerText = totalSlides;
+
+        function showSlide(index) {
+            if (index >= totalSlides) { currentSlide = totalSlides - 1; } else if (index < 0) { currentSlide = 0; } else { currentSlide = index; }
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+            document.getElementById('currentSlideNum').innerText = currentSlide + 1;
+            document.getElementById('prevBtn').style.opacity = currentSlide === 0 ? '0.3' : '1';
+            document.getElementById('prevBtn').style.cursor = currentSlide === 0 ? 'default' : 'pointer';
+            document.getElementById('nextBtn').style.opacity = currentSlide === totalSlides - 1 ? '0.3' : '1';
+            document.getElementById('nextBtn').style.cursor = currentSlide === totalSlides - 1 ? 'default' : 'pointer';
+        }
+        function changeSlide(direction) { if ((currentSlide === 0 && direction === -1) || (currentSlide === totalSlides - 1 && direction === 1)) { return; } showSlide(currentSlide + direction); }
+        document.addEventListener('keydown', function(event) { if (event.key === 'ArrowRight' || event.key === ' ') { changeSlide(1); } else if (event.key === 'ArrowLeft') { changeSlide(-1); } });
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

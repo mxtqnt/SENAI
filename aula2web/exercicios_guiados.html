@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios Guiados - Interface Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --bg: #ffffff; --text: #000000; --border: #000000; --gray: #f0f0f0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 2rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { text-transform: uppercase; border-bottom: 4px solid var(--border); padding-bottom: 1rem; margin-bottom: 2rem; font-size: 2.5rem; letter-spacing: -1px; }
+        h2 { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 1rem; margin-top: 3rem; }
+        
+        .exercise-card { border: 2px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem; background: var(--bg); position: relative; box-shadow: 4px 4px 0px var(--border); }
+        .exercise-card h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .exercise-card .badge { background: var(--text); color: var(--bg); padding: 2px 8px; font-size: 1rem; font-weight: bold; }
+        
+        .hint-container { margin-top: 1rem; border: 2px dashed var(--border); padding: 1rem; background: var(--gray); position: relative; }
+        .hint-content { filter: blur(6px); transition: filter 0.3s ease; user-select: none; pointer-events: none; }
+        .hint-content.revealed { filter: blur(0); user-select: auto; pointer-events: auto; }
+        .reveal-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--text); color: var(--bg); border: none; padding: 10px 20px; font-weight: bold; text-transform: uppercase; cursor: pointer; z-index: 10; }
+        .reveal-btn.hidden { display: none; }
+        .reveal-btn:hover { background: #333; }
+        code { background: #ddd; padding: 2px 6px; font-family: monospace; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1><i class="fa-solid fa-code"></i> Guia Prático: Projeto FlatTour</h1>
+    <p style="margin-bottom: 2rem; font-size: 1.2rem;">Siga os 10 passos abaixo para construir o layout final. Algumas etapas possuem dicas ocultas para auxiliar na lógica.</p>
+
+    <div class="exercise-card">
+        <h3><span class="badge">01</span> Setup Inicial: VS Code e Live Server</h3>
+        <p>Abra a pasta do projeto no VS Code e crie o arquivo <code>index.html</code> estruturando o boilerplate básico do HTML5. Em seguida, clique em <strong>"Go Live"</strong> (no rodapé do VS Code) ou clique com o botão direito no arquivo e escolha <strong>"Open with Live Server"</strong> para ver suas atualizações em tempo real.</p>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">02</span> Tags Semânticas</h3>
+        <p>Adicione o <code>&lt;header&gt;</code> para o topo, uma seção principal e o <code>&lt;footer&gt;</code> no final do body. Estruture a navegação com a tag <code>&lt;nav&gt;</code> e uma lista não ordenada.</p>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">03</span> Conteúdo Base e Cards</h3>
+        <p>Crie as duas seções de destinos (Nacionais e Internacionais). Dentro de cada uma, adicione a tag <code>&lt;article&gt;</code> para representar os cards individuais de cada cidade.</p>
+        
+        <div class="hint-container">
+            <button class="reveal-btn" onclick="revealHint(this)">Desbloquear Dica 1</button>
+            <div class="hint-content">
+                <strong>Dica Semântica:</strong> Utilize <code>&lt;section id="nacionais"&gt;</code> para englobar as categorias e crie uma <code>&lt;div class="grid-container"&gt;</code> dentro dela para agrupar todos os <code>&lt;article class="card"&gt;</code>. Isso facilitará muito a aplicação do CSS Grid depois!
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">04</span> Reset CSS e Variáveis</h3>
+        <p>No arquivo <code>style.css</code> (lembre de importá-lo no HTML), remova as margens e paddings padrão. Crie as variáveis de cor (preto, branco, tons de cinza) no seletor <code>:root</code>.</p>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">05</span> Tipografia Minimalista</h3>
+        <p>Configure a fonte do <code>body</code> para <em>Helvetica Neue</em> ou <em>Arial</em>. Transforme os títulos (h1, h2, h3) em maiúsculas e adicione espaçamento entre as letras (letter-spacing).</p>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">06</span> Header com Flexbox</h3>
+        <p>Faça com que o logotipo e o menu de navegação fiquem alinhados nas extremidades da tela, lado a lado.</p>
+        
+        <div class="hint-container">
+            <button class="reveal-btn" onclick="revealHint(this)">Desbloquear Dica 2</button>
+            <div class="hint-content">
+                <strong>Dica de Flexbox:</strong> Aplique no <code>.header</code> as regras: <code>display: flex;</code>, <code>justify-content: space-between;</code> e <code>align-items: center;</code>. Faça o mesmo na lista (ul) da navegação usando <code>gap</code> para o espaçamento.
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">07</span> Estilizando a Hero Section</h3>
+        <p>Destaque a seção de boas-vindas. Centralize o conteúdo, crie um botão flat (com bordas sólidas) e aplique uma sombra sólida usando <code>box-shadow</code> preta sem desfoque (blur 0px).</p>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">08</span> Construindo a Grade (Grid)</h3>
+        <p>Posicione os cards de destinos lado a lado. Eles devem ocupar o máximo de espaço possível, se adaptando à tela de forma inteligente sem "quebrar" bruscamente.</p>
+        
+        <div class="hint-container">
+            <button class="reveal-btn" onclick="revealHint(this)">Desbloquear Dica 3</button>
+            <div class="hint-content">
+                <strong>Dica de CSS Grid:</strong> Para um layout perfeitamente flexível, aplique no seu container de cards: <code>display: grid;</code> e a mágica <code>grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));</code>. 
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">09</span> Filtros e Efeitos P&B</h3>
+        <p>Garanta que as imagens dos cartões percam toda a cor, respeitando o estilo flat preto e branco, utilizando a propriedade <code>filter</code> do CSS. Adicione também um efeito de transição ao passar o mouse.</p>
+    </div>
+
+    <div class="exercise-card">
+        <h3><span class="badge">10</span> Mobile First e Media Queries</h3>
+        <p>Ajuste o layout para smartphones. Certifique-se de que o menu em linha se torne empilhado em telas pequenas (menores que 768px) e que as fontes dos títulos diminuam para evitar rolagem horizontal. Salve o arquivo e veja a página recarregar sozinha no Live Server!</p>
+    </div>
+
+</div>
+
+<script>
+    function revealHint(btn) {
+        const content = btn.nextElementSibling;
+        content.classList.add('revealed');
+        btn.classList.add('hidden');
+    }
+</script>
+
+</body>
+</html>

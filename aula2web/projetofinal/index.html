@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Horizonte Viagens - Experiências inesquecíveis pelo mundo.">
+    <title>Horizonte | Viagens Premium</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans (Tipografia muito moderna e geométrica) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Ícones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           Design Tokens (Variáveis Modernas)
+           ========================================== */
+        :root {
+            /* Cores Dark Theme Moderno */
+            --bg-base: #0B0F19;         /* Azul quase preto */
+            --bg-surface: #131B2D;      /* Azul profundo para cards */
+            --bg-surface-glass: rgba(19, 27, 45, 0.7);
+            
+            /* Destaques (Azul e Laranja Vibrantes) */
+            --accent-orange: #FF6B00;
+            --accent-orange-glow: rgba(255, 107, 0, 0.4);
+            --accent-blue: #3B82F6;
+            
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #FF6B00, #FF3D00);
+            --gradient-text: linear-gradient(to right, #FFFFFF, #9CA3AF);
+            
+            /* Texto */
+            --text-primary: #FFFFFF;
+            --text-secondary: #9CA3AF;
+            
+            /* Estrutura */
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-pill: 100px;
+            
+            /* Animação */
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==========================================
+           Reset e Base
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px; /* Para o menu fixo não cobrir os títulos */
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: #2D3748; border-radius: var(--radius-pill); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-orange); }
+
+        /* ==========================================
+           Header & Glassmorphism Navigation
+           ========================================== */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(19, 27, 45, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-pill);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition-smooth);
+            border-radius: 2px;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* ==========================================
+           Hero Section Premium
+           ========================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            overflow: hidden;
+        }
+
+        /* Background Dinâmico da Hero */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://picsum.photos/seed/luxurynature/1920/1080') center/cover no-repeat;
+            opacity: 0.4;
+            z-index: -2;
+            transform: scale(1.05);
+            animation: slowZoom 20s infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1.05); }
+            100% { transform: scale(1.15); }
+        }
+
+        /* Gradiente sobreposto na imagem */
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(11, 15, 25, 0.3) 0%, var(--bg-base) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            z-index: 1;
+            margin-top: 60px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            color: var(--accent-orange);
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-glow {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            padding: 1.2rem 3rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 25px var(--accent-orange-glow);
+            border: none;
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px var(--accent-orange-glow);
+        }
+
+        /* ==========================================
+           Seções Gerais
+           ========================================== */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================
+           Cards Modernos (Glass & Hover Effects)
+           ========================================== */
+        .modern-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transition-smooth);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modern-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 107, 0, 0.1);
+            border-color: rgba(255, 107, 0, 0.3);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modern-card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        /* Overlay escuro na imagem */
+        .card-img-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to top, var(--bg-surface) 0%, transparent 100%);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(11, 15, 25, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tag.orange {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--accent-orange);
+        }
+
+        .btn-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+        }
+
+        .btn-link i {
+            transition: transform 0.3s ease;
+            color: var(--accent-orange);
+        }
+
+        .modern-card:hover .btn-link {
+            color: var(--accent-orange);
+        }
+
+        .modern-card:hover .btn-link i {
+            transform: translateX(5px);
+        }
+
+        /* ==========================================
+           Footer Moderno
+           ========================================== */
+        .footer {
+            background: #080B13;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-surface);
+            border-radius: 50%;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================
+           Responsividade
+           ========================================== */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .section-header h2 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+                border-radius: var(--radius-md);
+            }
+            .nav-menu ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
+            .grid-container { grid-template-columns: 1fr; }
+            .section { padding: 4rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Glassmorphism -->
+    <header class="header">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-plane-departure"></i> Horizonte
+        </a>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#nacionais">Nacionais</a></li>
+                <li><a href="#internacionais">Internacionais</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fa-solid fa-star"></i> O Novo Padrão em Viagens</div>
+            <h1>Redefinindo a forma como você <span>Explora o Mundo</span></h1>
+            <p>Descubra 20 destinos exclusivos com experiências imersivas projetadas para quem exige o melhor do turismo nacional e internacional.</p>
+            <a href="#nacionais" class="btn-glow">Começar Jornada <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+        </div>
+    </section>
+
+    <!-- DESTINOS NACIONAIS -->
+    <section id="nacionais" class="section">
+        <div class="section-header">
+            <h2>Joias Nacionais</h2>
+            <p>Conecte-se com a essência do Brasil através de roteiros curados que elevam a experiência de turismo interno.</p>
+        </div>
+        
+        <div class="grid-container">
+            <!-- 1. Rio -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/rio2026/800/600" alt="Rio de Janeiro" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Rio de Janeiro, RJ</h3>
+                    <p class="card-desc">Contemple a vista do Cristo Redentor e sinta a energia vibrante da orla de Ipanema no entardecer.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-sun"></i> Verão</span>
+                        <span class="tag"><i class="fa-solid fa-martini-glass"></i> Lifestyle</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 2. Noronha -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/noronha26/800/600" alt="Fernando de Noronha" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Fernando de Noronha, PE</h3>
+                    <p class="card-desc">Santuário ecológico de águas cristalinas. O ápice do mergulho e contato direto com a vida marinha.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-water"></i> Mergulho</span>
+                        <span class="tag"><i class="fa-solid fa-leaf"></i> Eco</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 3. Foz -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/foz26/800/600" alt="Foz do Iguaçu" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Foz do Iguaçu, PR</h3>
+                    <p class="card-desc">O poder absoluto da natureza em uma das Sete Maravilhas Naturais. Uma experiência sensorial única.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-camera"></i> Paisagem</span>
+                        <span class="tag"><i class="fa-solid fa-tree"></i> Natureza</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 4. Salvador -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/salvador26/800/600" alt="Salvador" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Salvador, BA</h3>
+                    <p class="card-desc">Berço histórico do Brasil. Mergulhe nas cores do Pelourinho e na rica ancestralidade baiana.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-monument"></i> Cultura</span>
+                        <span class="tag"><i class="fa-solid fa-music"></i> Arte</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 5. Gramado -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/gramado26/800/600" alt="Gramado" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Gramado, RS</h3>
+                    <p class="card-desc">Refúgio de inverno com arquitetura inspirada na Europa, alta gastronomia e clima romântico.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-snowflake"></i> Inverno</span>
+                        <span class="tag"><i class="fa-solid fa-wine-glass"></i> Gastronomia</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 6. Jalapão -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/jalapao26/800/600" alt="Jalapão" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Jalapão, TO</h3>
+                    <p class="card-desc">O coração selvagem do Cerrado. Fervedouros de águas puras e dunas alaranjadas espetaculares.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-compass"></i> Expedição</span>
+                        <span class="tag"><i class="fa-solid fa-leaf"></i> Rústico</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 7. Lençóis -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/lencois26/800/600" alt="Lençóis Maranhenses" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Lençóis Maranhenses, MA</h3>
+                    <p class="card-desc">Um ecossistema surreal onde imensas dunas de areia branca abraçam lagoas azuis cristalinas.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-water"></i> Oásis</span>
+                        <span class="tag"><i class="fa-solid fa-camera"></i> Visual</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 8. Manaus -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/manaus26/800/600" alt="Manaus" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Manaus, AM</h3>
+                    <p class="card-desc">Imersão total na grandiosidade da Amazônia. Navegue pelo Rio Negro e descubra a selva.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-tree"></i> Amazônia</span>
+                        <span class="tag"><i class="fa-solid fa-ship"></i> Fluvial</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 9. Bonito -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/bonito26/800/600" alt="Bonito" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Bonito, MS</h3>
+                    <p class="card-desc">Rios transparentes que mais parecem aquários gigantes. O padrão ouro do ecoturismo mundial.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-fish"></i> Flutuação</span>
+                        <span class="tag"><i class="fa-solid fa-leaf"></i> Ecoturismo</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 10. Ouro Preto -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">BR</div>
+                    <img src="https://picsum.photos/seed/ouropreto26/800/600" alt="Ouro Preto" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Ouro Preto, MG</h3>
+                    <p class="card-desc">Um retorno sofisticado ao Brasil Colônia através de igrejas de ouro, arte barroca e ruas charmosas.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-landmark"></i> Patrimônio</span>
+                        <span class="tag"><i class="fa-solid fa-palette"></i> Barroco</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- DESTINOS INTERNACIONAIS -->
+    <section id="internacionais" class="section" style="background-color: rgba(19, 27, 45, 0.3);">
+        <div class="section-header">
+            <h2>Fronteiras Globais</h2>
+            <p>Roteiros internacionais meticulosamente desenhados para expandir seus horizontes culturais.</p>
+        </div>
+        
+        <div class="grid-container">
+            <!-- 1. Paris -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">EU</div>
+                    <img src="https://picsum.photos/seed/paris26/800/600" alt="Paris" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Paris, França</h3>
+                    <p class="card-desc">A aura inconfundível da Cidade Luz. Arte, moda, alta gastronomia e a silhueta da Torre Eiffel.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-heart"></i> Romance</span>
+                        <span class="tag"><i class="fa-solid fa-champagne-glasses"></i> Luxo</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 2. NY -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">US</div>
+                    <img src="https://picsum.photos/seed/ny26/800/600" alt="Nova York" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Nova York, EUA</h3>
+                    <p class="card-desc">O pulsar da metrópole global. Espetáculos na Broadway, Central Park e o horizonte de Manhattan.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-city"></i> Metrópole</span>
+                        <span class="tag"><i class="fa-solid fa-bolt"></i> Dinâmico</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 3. Tóquio -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">JP</div>
+                    <img src="https://picsum.photos/seed/tokyo26/800/600" alt="Tóquio" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Tóquio, Japão</h3>
+                    <p class="card-desc">Onde o futuro encontra a tradição ancestral. Luzes neon de Shibuya e o silêncio dos templos budistas.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-robot"></i> Futuro</span>
+                        <span class="tag"><i class="fa-solid fa-torii-gate"></i> Zen</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 4. Roma -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">IT</div>
+                    <img src="https://picsum.photos/seed/rome26/800/600" alt="Roma" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Roma, Itália</h3>
+                    <p class="card-desc">Caminhe pelas ruínas do Império Romano e delicie-se com a verdadeira excelência culinária italiana.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-building-columns"></i> Clássico</span>
+                        <span class="tag"><i class="fa-solid fa-utensils"></i> Sabor</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 5. Cancún -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">MX</div>
+                    <img src="https://picsum.photos/seed/cancun26/800/600" alt="Cancún" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Cancún, México</h3>
+                    <p class="card-desc">O Caribe em sua melhor forma. Resorts premium de frente para o mar azul turquesa inigualável.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-umbrella-beach"></i> Paraíso</span>
+                        <span class="tag"><i class="fa-solid fa-spa"></i> Relax</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 6. Londres -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">UK</div>
+                    <img src="https://picsum.photos/seed/london26/800/600" alt="Londres" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Londres, Inglaterra</h3>
+                    <p class="card-desc">Sofisticação britânica atemporal. O charme dos pubs, a realeza e a vanguarda do design europeu.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-crown"></i> Realeza</span>
+                        <span class="tag"><i class="fa-solid fa-cloud-rain"></i> Clássico</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 7. Machu Picchu -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">PE</div>
+                    <img src="https://picsum.photos/seed/machu26/800/600" alt="Machu Picchu" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Machu Picchu, Peru</h3>
+                    <p class="card-desc">Uma jornada épica e espiritual até o topo dos Andes para revelar o maior mistério do Império Inca.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-mountain"></i> Andino</span>
+                        <span class="tag"><i class="fa-solid fa-shoe-prints"></i> Trilha</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 8. Dubai -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">AE</div>
+                    <img src="https://picsum.photos/seed/dubai26/800/600" alt="Dubai" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Dubai, EAU</h3>
+                    <p class="card-desc">A arquitetura desafiando os limites da gravidade. Odisseias no deserto e o pináculo do luxo asiático.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-gem"></i> Premium</span>
+                        <span class="tag"><i class="fa-solid fa-building"></i> Inovação</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 9. Santorini -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">GR</div>
+                    <img src="https://picsum.photos/seed/santorini26/800/600" alt="Santorini" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Santorini, Grécia</h3>
+                    <p class="card-desc">Vilas brancas debruçadas sobre o penhasco vulcânico oferecendo o pôr do sol mais cobiçado do Mediterrâneo.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-camera"></i> Ícone</span>
+                        <span class="tag"><i class="fa-solid fa-ship"></i> Mar Egeu</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- 10. Cape Town -->
+            <article class="modern-card">
+                <div class="card-img-wrapper">
+                    <div class="card-badge">ZA</div>
+                    <img src="https://picsum.photos/seed/capetown26/800/600" alt="Cidade do Cabo" class="card-img">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Cidade do Cabo, África do Sul</h3>
+                    <p class="card-desc">Onde o oceano encontra a majestosa Table Mountain. Uma mistura inigualável de safáris e vinícolas.</p>
+                    <div class="card-tags">
+                        <span class="tag orange"><i class="fa-solid fa-hippo"></i> Safári</span>
+                        <span class="tag"><i class="fa-solid fa-wine-glass"></i> Enologia</span>
+                    </div>
+                    <a href="#" class="btn-link">Explorar Destino <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer Moderno -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Horizonte.</h3>
+                <p>Especialistas em transformar coordenadas geográficas em memórias indeléveis. O seu passaporte para o extraordinário começa aqui.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Descubra</h4>
+                <ul>
+                    <li><a href="#nacionais">Coleção Brasil</a></li>
+                    <li><a href="#internacionais">Coleção Global</a></li>
+                    <li><a href="#">Roteiros Personalizados</a></li>
+                    <li><a href="#">Viagens Corporativas</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>A Empresa</h4>
+                <ul>
+                    <li><a href="#">Nossa História</a></li>
+                    <li><a href="#">Sustentabilidade</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                    <li><a href="#">Imprensa</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Contato Grife</h4>
+                <ul>
+                    <li style="color: var(--text-secondary)"><i class="fa-solid fa-envelope"></i> concierge@horizonte.com</li>
+                    <li style="color: var(--text-secondary)"><i class="fa-solid fa-phone"></i> +55 (11) 4000-0000</li>
+                    <li style="color: var(--text-secondary)"><i class="fa-solid fa-location-dot"></i> Av. Faria Lima, São Paulo</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Horizonte Viagens Premium. Todos os direitos reservados. Design por alunos de Interface Web.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
