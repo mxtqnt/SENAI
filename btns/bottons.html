@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Impressão Arttibus - Bottons</title>
+    <style>
+        :root {
+            --a4-width: 210mm;
+            --a4-height: 297mm;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .no-print {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .no-print h2 {
+            margin: 0 0 10px 0;
+            width: 100%;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+        .input-group.destaque {
+            border-color: #2196F3;
+            background: #e3f2fd;
+        }
+
+        select, input, button {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-primary:hover { background-color: #1976D2; }
+        
+        .btn-add {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-add:hover { background-color: #45a049; }
+
+        .btn-clear {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-clear:hover { background-color: #d32f2f; }
+
+        /* Configurações da Página A4 */
+        .a4-page {
+            width: var(--a4-width);
+            height: var(--a4-height);
+            background: white;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: flex-start;
+        }
+
+        .botton-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0.1mm solid #999;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        .btn-delete {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(244, 67, 54, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .botton-wrapper:hover .btn-delete { opacity: 1; }
+        .btn-delete:hover { background: rgba(211, 47, 47, 1); transform: scale(1.1); }
+
+        .botton-outer {
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            border: 0.2mm solid #e0e0e0;
+            z-index: 1;
+        }
+
+        .botton-inner {
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            z-index: 2;
+        }
+
+        /* Regras Rigorosas de Impressão */
+        @media print {
+            body { background: none; padding: 0; margin: 0; }
+            .no-print, .btn-delete { display: none !important; }
+            .a4-page { margin: 0; box-shadow: none; page-break-after: always; }
+            @page { size: A4; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print">
+        <h2>🛠️ Setup de Impressão de Bottons - Arttibus</h2>
+        
+        <div class="input-group">
+            <label>Tamanho (Sangria | Face):</label>
+            <select id="sizeSelect">
+                <option value="73|62.95">G - 73mm (Frente: 62.95mm)</option>
+                <option value="50.83|40.06">M - 50.83mm (Frente: 40.06mm)</option>
+                <option value="36.72|28.94">P - 36.72mm (Frente: 28.94mm)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Cópias:</label>
+            <input type="number" id="repeatCount" value="1" min="1" style="width: 70px;">
+        </div>
+
+        <!-- Nova seção de Catálogo -->
+        <div class="input-group destaque">
+            <label>Nº Catálogo (Local):</label>
+            <div style="display: flex; gap: 5px;">
+                <input type="text" id="catalogoInput" placeholder="Ex: 15, 02" style="width: 100px;">
+                <button onclick="adicionarDoCatalogo()" class="btn-add">➕ Add</button>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Ou Upload Manual:</label>
+            <input type="file" id="imageInput" multiple accept="image/*" style="width: 200px;">
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-left: auto;">
+            <button onclick="limparTudo()" class="btn-clear">🗑️ Limpar</button>
+            <button onclick="window.print()" class="btn-primary">🖨️ Imprimir</button>
+        </div>
+    </div>
+
+    <div id="printArea"></div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const sizeSelect = document.getElementById('sizeSelect');
+        const repeatCount = document.getElementById('repeatCount');
+        const catalogoInput = document.getElementById('catalogoInput');
+        const printArea = document.getElementById('printArea');
+
+        const pageWidth = 210; 
+        const pageHeight = 297; 
+        
+        // Estado: Guarda todas as imagens na ordem
+        let itensParaImpressao = [];
+
+        imageInput.addEventListener('change', adicionarUploads);
+        sizeSelect.addEventListener('change', renderizarGrid);
+
+        // Permite apertar 'Enter' no campo de catálogo para adicionar mais rápido
+        catalogoInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                adicionarDoCatalogo();
+            }
+        });
+
+        // FUNÇÃO NOVA: Adiciona a imagem referenciando a pasta local
+        function adicionarDoCatalogo() {
+            const numero = catalogoInput.value.trim();
+            if (!numero) return;
+
+            const repeats = parseInt(repeatCount.value) || 1;
+            
+            // Assume que as imagens estão numa pasta "catalogo" e são ".png"
+            // Se os seus arquivos forem .jpg, basta trocar a linha abaixo para `.jpg`
+            const imgPath = `catalogo/${numero}.png`;
+
+            for(let i = 0; i < repeats; i++) {
+                itensParaImpressao.push(imgPath);
+            }
+
+            catalogoInput.value = ''; // Limpa o campo para o próximo número
+            catalogoInput.focus(); // Mantém o cursor no campo
+            renderizarGrid();
+        }
+
+        // FUNÇÃO ATUALIZADA: Lida com uploads manuais
+        function adicionarUploads() {
+            const files = imageInput.files;
+            if (files.length === 0) return;
+
+            const repeats = parseInt(repeatCount.value) || 1;
+
+            Array.from(files).forEach(file => {
+                const imgUrl = URL.createObjectURL(file);
+                for(let i = 0; i < repeats; i++) {
+                    itensParaImpressao.push(imgUrl);
+                }
+            });
+
+            imageInput.value = ''; 
+            renderizarGrid();
+        }
+
+        function removerItem(index) {
+            itensParaImpressao.splice(index, 1); 
+            renderizarGrid(); 
+        }
+
+        function renderizarGrid() {
+            printArea.innerHTML = '';
+            if (itensParaImpressao.length === 0) return;
+
+            const [outerSize, innerSize] = sizeSelect.value.split('|').map(Number);
+            
+            const cols = Math.floor(pageWidth / outerSize);
+            const rows = Math.floor(pageHeight / outerSize);
+            const itemsPerPage = cols * rows;
+
+            const gridWidth = cols * outerSize;
+            const gridHeight = rows * outerSize;
+
+            let currentGrid = null;
+
+            itensParaImpressao.forEach((imgUrl, index) => {
+                if (index % itemsPerPage === 0) {
+                    currentGrid = createPage(gridWidth, gridHeight);
+                }
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'botton-wrapper';
+                wrapper.style.width = `${outerSize}mm`;
+                wrapper.style.height = `${outerSize}mm`;
+
+                const outerCircle = document.createElement('div');
+                outerCircle.className = 'botton-outer';
+                outerCircle.style.width = `${outerSize}mm`;
+                outerCircle.style.height = `${outerSize}mm`;
+                outerCircle.style.backgroundImage = `url('${imgUrl}')`;
+
+                const innerCircle = document.createElement('div');
+                innerCircle.className = 'botton-inner';
+                innerCircle.style.width = `${innerSize}mm`;
+                innerCircle.style.height = `${innerSize}mm`;
+                innerCircle.style.backgroundImage = `url('${imgUrl}')`;
+
+                const btnDelete = document.createElement('button');
+                btnDelete.className = 'btn-delete';
+                btnDelete.innerHTML = '🗑️';
+                btnDelete.title = "Remover este botton";
+                btnDelete.onclick = () => removerItem(index);
+
+                wrapper.appendChild(outerCircle);
+                wrapper.appendChild(innerCircle);
+                wrapper.appendChild(btnDelete);
+                
+                currentGrid.appendChild(wrapper);
+            });
+        }
+
+        function createPage(w, h) {
+            const page = document.createElement('div');
+            page.className = 'a4-page';
+            
+            const grid = document.createElement('div');
+            grid.className = 'grid-container';
+            grid.style.width = `${w}mm`;
+            grid.style.height = `${h}mm`;
+            
+            page.appendChild(grid);
+            printArea.appendChild(page);
+            return grid;
+        }
+
+        function limparTudo() {
+            itensParaImpressao = [];
+            printArea.innerHTML = '';
+        }
+    </script>
+</body>
+</html>
